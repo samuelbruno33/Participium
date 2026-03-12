@@ -20,7 +20,7 @@
 | D4   | User manual and documentation               | Documentation  | Simple instructions on how to use the platform.                                                                        |
 | D5   | API documentation                           | Documentation  | Technical guide explaining how the front-end and back-end talk to each other.                                          |
 
-![Product Breakdown Structure Diagram](.doc/deliverable/SWE_Participium_PBS_Tree.png)
+![Product Breakdown Structure Diagram](SWE_Participium_PBS_Tree.png)
 
 ---
 
