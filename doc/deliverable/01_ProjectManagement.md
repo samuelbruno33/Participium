@@ -27,10 +27,21 @@
 # Work Breakdown Structure (WBS)
 
 ### WBS with traceability to PBS
-| ID  | Work package | Traced PBS outputs (IDs) |
-|:----|:-------------|:--------------------------|
-| #.# |              |                           |
-
+| ID  | Work package                                   | Task Gantt | Traced PBS outputs (IDs) |
+|:----|:-----------------------------------------------|:-----------|:--------------------------|
+| 1.1 | Definition of functional requirements          | T1.1       | D1                        |
+| 1.2 | Definition of non-functional requirements      | T1.2       | D1                        |
+| 2.1 | Architecture definition                        | T2.1       | D2                        |
+| 2.2 | Definition of cloud and storage architecture   | T2.2       | I1, I2, I3                |
+| 2.3 | Backend design                                 | T2.3       | S1, D2                    |
+| 2.4 | Frontend design                                | T2.4       | S2, D2                    |
+| 3.1 | Development of APIs and backend skeleton       | T3.1       | I3, I4, I5, S1            |
+| 3.2 | Development of the backend                     | T3.2       | I4, I5, I6, S1            |
+| 3.3 | Development of the frontend                    | T3.3       | I4, I5, I6, S1            |
+| 4.1 | Definition and execution of test plan          | T4.1       | D3                        |
+| 4.2 | Acceptance testing with user                   | T4.2       | D3                        |
+| 5.1 | Deployment of the system                       | T5.1       | D4, D5                    |
+| 5.2 | Monitoring and bug fixing                      | T5.2       | -                         |
 
 ---
 
