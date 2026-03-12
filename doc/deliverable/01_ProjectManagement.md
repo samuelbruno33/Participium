@@ -20,6 +20,8 @@
 | D4   | User manual and documentation               | Documentation  | Simple instructions on how to use the platform.                                                                        |
 | D5   | API documentation                           | Documentation  | Technical guide explaining how the front-end and back-end talk to each other.                                          |
 
+<img src="./doc/deliverable/SWE Participium - PBS Tree.png" alt="Participium PBS Diagram" width="800">
+
 ---
 
 # Work Breakdown Structure (WBS)
