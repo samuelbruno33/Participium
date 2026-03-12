@@ -1,7 +1,7 @@
 # Product Breakdown Structure (PBS)
 
 | ID   | Deliverable                                 | Type           | Notes                                                                                                                  |
-|:-----|:----------------------------------------- --|:---------------|:-----------------------------------------------------------------------------------------------------------------------|
+|:-----|:--------------------------------------------|:---------------|:-----------------------------------------------------------------------------------------------------------------------|
 | S1   | Backend                                     | Software       | The main logic and background services of the application.                                                             |
 | S1.1 | Account management service                  | Software       | Handles user registration, roles (citizens, operators, admins), and profile settings like email preferences.           |
 | S1.2 | Report and Workflow management service      | Software       | The core module. It saves report text, handles photo uploads (up to 3), and tracks the report's status (Pending, etc.).|
