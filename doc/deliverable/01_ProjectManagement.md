@@ -48,15 +48,29 @@
 # Gantt, dependencies, and critical path
 
 ## Activity table
-| ID | Activity | Duration | Dependencies | Start | End | Critical | Milestone |
-|:---|:---------|:---------|:-------------|:------|:----|:------|:---------|
-| R# |          |          |              |       |     |       |          |
+| ID   | Activity                                     | Duration | Dependencies | Start | End | Critical | Milestone |
+|:-----|:---------------------------------------------|:---------|:-------------|:------|:----|:---------|:----------|
+| T1.1 | Definition of functional requirements        | 2        -              | 1     | 2   | yes      | no        |
+| T1.2 | Definition of non-functional requirements    | 2        | -            | 1     | 2   | yes      | no        |
+| T2.1 | Architecture definition                      | 2        | T1.1, T1.2   | 3     | 4   | yes      | no        |
+| T2.2 | Definition of cloud and storage architecture | 2        | T1.1, T1.2   | 3     | 4   | yes      | no        | 
+| T2.3 | Backend design                               | 1        | T2.1, T2.2   | 5     | 5   | yes      | no        |
+| T2.4 | Frontend design                              | 1        | T2.1, T2.2   | 5     | 5   | yes      | no        |
+| T3.1 | Development of APIs and backend skeleton     | 4        | T2.3         | 6     | 9   | yes      | yes       |
+| T3.2 | Development of the backend                   | 8        | T3.1         | 10    | 17  | no       | no        |
+| T3.3 | Development of the frontend                  | 10       | T2.4, T3.1   | 10    | 19  | yes      | no        |
+| T4.1 | Definition and execution of test plan        | 2        | T3.2, T3.3   | 20    | 21  | yes      | no        |
+| T4.2 | Acceptance testing with user                 | 1        | T4.1         | 22    | 22  | yes      | yes       |
+| T5.1 | Deployment of the system                     | 1        | T4.2         | 23    | 23  | yes      | yes       |
+| T5.2 | Monitoring and bug fixing                    | 3        | T5.1         | 24    | 26  | yes      | no        |
+
+
 
 
 ## Critical path
-`X → X → X → ...`
+`T1.1 | T1.2 → T2.1 | T2.2 → T2.3 | T2.4 → T3.1 → T3.2 | T3.3 → T4.1 → T4.2 → T5.1 → T5.2`
 
-
+Minimum duration of the activities in the GANTT diagram: 26 weeks.
 
 ---
 
