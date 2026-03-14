@@ -47,10 +47,12 @@
 
 # Gantt, dependencies, and critical path
 
+![Gantt](GanttChart.PNG)
+
 ## Activity table
 | ID   | Activity                                     | Duration | Dependencies | Start | End | Critical | Milestone |
 |:-----|:---------------------------------------------|:---------|:-------------|:------|:----|:---------|:----------|
-| T1.1 | Definition of functional requirements        | 2        -              | 1     | 2   | yes      | no        |
+| T1.1 | Definition of functional requirements        | 2        | -            | 1     | 2   | yes      | no        |
 | T1.2 | Definition of non-functional requirements    | 2        | -            | 1     | 2   | yes      | no        |
 | T2.1 | Architecture definition                      | 2        | T1.1, T1.2   | 3     | 4   | yes      | no        |
 | T2.2 | Definition of cloud and storage architecture | 2        | T1.1, T1.2   | 3     | 4   | yes      | no        | 
