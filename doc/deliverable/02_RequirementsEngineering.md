@@ -12,8 +12,6 @@
 
 # 2) Context Diagram
 
-Attach your context diagram as an image under `../data/img/` and link it here:
-
 - `![](../data/img/contextDiagram.png)`
 
 ---
