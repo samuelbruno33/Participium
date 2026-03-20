@@ -12,7 +12,7 @@
 
 # 2) Context Diagram
 
-- `![](../data/img/contextDiagram.png)`
+![](../data/img/contextDiagram.png)
 
 ---
 
