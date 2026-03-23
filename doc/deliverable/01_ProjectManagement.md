@@ -38,7 +38,7 @@
 | 2.4 | Frontend design                              | T2.4       | S2, D2                   |
 | 3.1 | Development of APIs and backend skeleton     | T3.1       | I3, I4, I5, S1           |
 | 3.2 | Development of the backend                   | T3.2       | I3, I4, I5, S1           |
-| 3.3 | Development of the frontend                  | T3.3       | I3, I4, I5, S1           |
+| 3.3 | Development of the frontend                  | T3.3       | I3, I4, I5, S2           |
 | 4.1 | Definition and execution of test plan        | T4.1       | D3                       |
 | 4.2 | Acceptance testing with user                 | T4.2       | D3                       |
 | 5.1 | Deployment of the system                     | T5.1       | D4, D5                   |
