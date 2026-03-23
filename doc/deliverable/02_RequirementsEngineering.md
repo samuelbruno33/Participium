@@ -20,7 +20,17 @@
 
 | ID    | Interface | Actor       | Physical interface | Logical interface |
 |:------|:----------|:------------|:-------------------|:------------------|
-| IF-XX |           |             |                    |                   |
+| IF-01 | User Interface | Unregistered User                    | Smartphone/PC with internet connection           | Web GUI         |
+| IF-02 | User Interface | Registered Citizen                   | Smartphone/PC with internet connection           | Web GUI         |
+| IF-03 | User Interface | Admin                                | Smartphone/PC with internet connection           | Web GUI         |
+| IF-04 | User Interface | Municipal Office                     | Workstation/PC with internet connection          | Web GUI         |
+| IF-05 | User Interface | System Administrator                 | Workstation with secure access (SSH/VPN)         | Web GUI         |
+| IF-06 | User Interface | Map Geo-Location Service             | Internet connection            | Map/Geo-Location APIs             |
+| IF-07 | External System Interface | Authentication System     | Internet connection            | Authentication APIs               |
+| IF-08 | External System Interface | Relational Database Service |  Cloud Network connection      | SQL/Database APIs               |
+| IF-09 | External System Interface | Cloud Hosting and Storage System    | Cloud Network connection       | Cloud Storage APIs                |
+| IF-10 | External System Interface | Notification Service               | Internet connection  | Notification APIs       |
+
 
 ---
 
@@ -28,7 +38,16 @@
 
 | ID     | Name | Role | Background / Context | Goals | Constraints | Devices / Usage setting | Accessibility / Additional needs |
 |:-------|:-----|:-----|:---------------------|:------|:------------|:------------------------|:---------------------------------|
-| PER-XX |      |      |                      |       |             |                         |                                  |
+| PER-01 |      |      |                      |       |             |                         |                                  |
+| PER-02 |      |      |                      |       |             |                         |                                  |
+| PER-03 |      |      |                      |       |             |                         |                                  |
+| PER-04 |      |      |                      |       |             |                         |                                  |
+| PER-05 |      |      |                      |       |             |                         |                                  |
+| PER-06 |      |      |                      |       |             |                         |                                  |
+| PER-07 |      |      |                      |       |             |                         |                                  |
+| PER-08 |      |      |                      |       |             |                         |                                  |
+
+
 
 ---
 
