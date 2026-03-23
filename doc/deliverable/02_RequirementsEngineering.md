@@ -55,7 +55,22 @@
 
 | ID    | Persona/Role | User story (As a… I want… so that…) |
 |:------|:-------------|:------------------------------------|
-| US-XX |              |                                     |
+| US-01 | Unregistered User/ Registered Citizen  | As an Unregistered User/Registered Citizen, I want to explore reports so that I can understand issues in my city                                     |
+| US-02 | Unregistered User/ Registered Citizen    | As an Unregistered User/Registered Citizen, I want to see updates of reports over time so that I can track their progress                             |
+| US-03 | Unregistered User/ Registered Citizen    | As an Unregistered User/Registered Citizen I want to view public analytics filtered by category or by day/week/month so that I can analyze trends                                  |
+| US-04 | Registered Citizen      | As a Registered Citizen, I want to report issues on the map so that I can notify the Municipal Office about problems                               |
+| US-05 | Registered Citizen      | As a Registered Citizen, I want to track updates on my created reports so that I can know their status                                     |
+| US-06 | Registered Citizen      | As a Registered Citizen, I want to receive notifications on followed reports (optionally by email) so that I stay informed                                   |
+| US-07 | Registered Citizen      | As a Registered Citizen, I want to upload photos to a report so that I can provide visual evidence |
+| US-08 | Registered Citizen             | As a Registered Citizen, I want to mark a report as anonymous so that my identity is not publicly visible.                                      |
+| US-09 | Registered Citizen             | As a Registered Citizen, I want to assign a category to a report so that it can be handled by the correct Municipal Office                                      |
+| US-10 | Registered Citizen             | As a Registered Citizen, I want to send messages to the Municipal Office so that I can provide or receive clarifications                                      |
+| US-11 | Municipal Office             | As a Municipal Office, I want to review incoming reports so that I can assess their validity         |
+| US-12 | Municipal Office             | As a Municipal Office, I want to assign tasks so that reports are handled by the appropriate team         |
+| US-13 | Municipal Office             | As a Municipal Office, I want to update the status of reports so that citizens are informed about the progress         |
+| US-14 | Municipal Office             | As a Municipal Office, I want to validate or reject reports so that only relevant issues are processed          |
+| US-15 | Municipal Office             | As a Municipal Office, I want to request clarification from citizens so that I can better understand reported issues          |
+
 
 ---
 
