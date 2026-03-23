@@ -2,9 +2,7 @@
 
 Attach your use case diagram as an image under `../data/img/` and link it here:
 
-- `![](../data/img/use-case-diagram.png)`
-
-Also, make sure to include the JSON source file downloaded from the UML Modeler used to draw the diagram in the `../data/` folder.
+![Use Case Diagram](../../data/img/use-case-diagram.png)
 
 # 2) Use Case Narratives
 
