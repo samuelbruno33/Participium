@@ -20,6 +20,9 @@
 | D4   | User manual and documentation               | Documentation  | Simple instructions on how to use the platform.                                                                         |
 | D5   | API documentation                           | Documentation  | Technical guide explaining how the front-end and back-end talk to each other.                                           |
 
+**Rationale and Assumptions:**
+The scope was interpreted focusing strictly on the baseline requirements of the Participium system. The decomposition separates the software components (backend micro-services and frontend) from the underlying infrastructure (cloud, database, storage) and necessary documentation. We assumed a cloud-based deployment, which is why external services like map routing and email delivery are not treated as internal software components but as external dependencies.
+
 ![Product Breakdown Structure Diagram](../../data/img/SWE_Participium_PBS_Tree.png)
 
 ---
@@ -43,6 +46,9 @@
 | 4.2 | Acceptance testing with user                 | T4.2       | D3                       |
 | 5.1 | Deployment of the system                     | T5.1       | D4, D5                   |
 | 5.2 | Monitoring and bug fixing                    | T5.2       | -                        |
+
+**Grouping Rationale:**
+The work packages are grouped sequentially following a standard software development lifecycle: Requirements (1.x), Design (2.x), Development (3.x), Testing (4.x), and Deployment (5.x). A key architectural assumption is that the backend and APIs must be skeletonized first (T3.1) before parallel development of the frontend and full backend can begin.
 
 ---
 
@@ -74,6 +80,9 @@
 
 Minimum duration of the activities in the GANTT diagram: 26 weeks.
 
+**Scheduling Strategy:**
+The schedule is heavily parallelized during the development phase (T3.2 and T3.3 run concurrently) after the architecture and API definitions are completed. The critical path runs through the initial setup, API creation, frontend development (which is estimated to take the longest at 10 weeks), and testing. Backend development has float time and is not on the critical path.
+
 ---
 
 # Risk Management
@@ -101,3 +110,6 @@ Risk level thresholds (by exposure):
 | R4  | Loss of data (hardware failure, ransomware, …) | Technical | 1   | 5   | 5   | Low    | Implement and regularly test a backup and restore system |
 | R5  | Low people involvement                         | Business  | 2   | 4   | 8   | Medium | Better advertisement                                     |
 | R6  | Hosting cost increase                          | Business  | 4   | 2   | 8   | Low    | Consider alternatives                                    |
+
+**Risk Summary:**
+The most critical risk is changing requirements (R1), which has a high probability and impact. To mitigate this, our plan requires continuous communication. Data breach (R3) is also a significant concern, requiring dedicated time for code auditing before deployment. These mitigations rely on the buffer times implicitly built into the testing phases.

@@ -1,12 +1,15 @@
 # 1) Stakeholders
 
-| ID   | Stakeholder name   | Description                                 | Role                                         | Main concerns                                         |
-|:-------|:---------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------|
-| STK-01 | Unregistered User  | Visitor accessing the platform without authentication.           | Consult public reports and explore issues on the map.                 | Ease of use, accessibility, clarity of information, no mandatory registration barriers.    |
-| STK-02 | Registered Citizen  | Authenticated user who interacts actively with the platform.        | Submit reports, upload photos, track status, follow issues, communicate with offices. | Usability, responsiveness, transparency of report status, privacy of personal data.      |
-| STK-03 | Admin        | Platform-level manager with extended privileges.              | Manage users, oversee system activity, access analytics, enforce policies.      | System security, data integrity, moderation workload, reliability of analytics.        |
-| STK-04 | Municipal Office   | Public authority responsible for handling reported issues.         | Review reports, validate submissions, assign tasks, manage resolution workflows.   | Workload management, efficiency, accuracy of reports, accountability, clear communication.   |
-| STK-05 | System Administrator | Technical operator responsible for infrastructure and system maintenance.  | Maintain infrastructure, ensure deployment, backups, security, and system performance.| System reliability, uptime, scalability, security threats, disaster recovery readiness.    |
+| ID | Stakeholder name | Description | Role | Main concerns | Relative priority |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| STK-01 | Unregistered User | Visitor accessing the platform without authentication. | Consult public reports and explore issues on the map. | Ease of use, accessibility, clarity of information, no mandatory registration barriers. | Low |
+| STK-02 | Registered Citizen | Authenticated user who interacts actively with the platform. | Submit reports, upload photos, track status, follow issues, communicate with offices. | Usability, responsiveness, transparency of report status, privacy of personal data. | High |
+| STK-03 | Admin | Platform-level manager with extended privileges. | Manage users, oversee system activity, access analytics, enforce policies. | System security, data integrity, moderation workload, reliability of analytics. | Medium |
+| STK-04 | Municipal Office | Public authority responsible for handling reported issues. | Review reports, validate submissions, assign tasks, manage resolution workflows. | Workload management, efficiency, accuracy of reports, accountability, clear communication. | High |
+| STK-05 | System Administrator | Technical operator responsible for infrastructure and system maintenance. | Maintain infrastructure, ensure deployment, backups, security, and system performance. | System reliability, uptime, scalability, security threats, disaster recovery readiness. | Medium |
+
+**Rationale and Justification:**
+Stakeholders were identified by analyzing the primary users of the system (citizens) and the entities responsible for managing the reports (Municipal Office, Admins). *Registered Citizens* and the *Municipal Office* are assigned the highest priority since they are the core actors driving the system's workflow (submitting and resolving issues). *Admins* and *System Administrators* have a medium priority as they support the system's daily operations and security. *Unregistered users* have low priority as their interaction is limited to read-only public views.
 
 ---
 
@@ -18,18 +21,18 @@
 
 # 3) Interfaces
 
-| ID  | Interface | Actor    | Physical interface | Logical interface |
-|:------|:----------|:------------|:-------------------|:------------------|
-| IF-01 | User Interface | Unregistered User          | Smartphone/PC with internet connection      | Web GUI     |
-| IF-02 | User Interface | Registered Citizen          | Smartphone/PC with internet connection      | Web GUI     |
-| IF-03 | User Interface | Admin                | Smartphone/PC with internet connection      | Web GUI     |
-| IF-04 | User Interface | Municipal Office           | Workstation/PC with internet connection     | Web GUI     |
-| IF-05 | User Interface | System Administrator         | Workstation with secure access (SSH/VPN)     | Web GUI     |
-| IF-06 | External System Interface | Map Geo-Location Service       | Internet connection      | Map/Geo-Location APIs       |
-| IF-07 | External System Interface | Authentication System   | Internet connection      | Authentication APIs        |
-| IF-08 | External System Interface | Relational Database Service | Cloud Network connection   | SQL/Database APIs        |
-| IF-09 | External System Interface | Cloud Hosting and Storage System  | Cloud Network connection    | Cloud Storage APIs        |
-| IF-10 | External System Interface | Notification Service        | Internet connection | Notification APIs    |
+| ID | Interface | Actor | Physical interface | Logical interface | Exchanged data | Purpose (Why it is needed) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| IF-01 | User Interface | Unregistered User | Smartphone/PC with internet connection | Web GUI | Read-only report data, map tiles, public statistics. | To allow citizens to consult public issues and statistics without logging in. |
+| IF-02 | User Interface | Registered Citizen | Smartphone/PC with internet connection | Web GUI | Report details (text, photos, coordinates), login credentials, messages. | To enable authenticated users to submit, track reports, and communicate. |
+| IF-03 | User Interface | Admin | Smartphone/PC with internet connection | Web GUI | User roles, advanced analytics data, system configuration. | To allow platform management and visualization of advanced private statistics. |
+| IF-04 | User Interface | Municipal Office | Workstation/PC with internet connection | Web GUI | Report status updates, clarification messages, task assignments. | To enable operators to process, validate, and manage the lifecycle of reports. |
+| IF-05 | User Interface | System Administrator | Workstation with secure access (SSH/VPN) | Web GUI / CLI | Server logs, deployment commands, backup data. | To maintain system infrastructure, ensure uptime, and manage disaster recovery. |
+| IF-06 | External System Interface | Map Geo-Location Service | Internet connection | Map/Geo-Location APIs | GPS coordinates (latitude/longitude), map tiles. | To geo-locate issues visually on the interactive city map during submission and consultation. |
+| IF-07 | External System Interface | Authentication System | Internet connection | Authentication APIs | User credentials, authentication tokens. | To verify identities and secure user access to the platform. |
+| IF-08 | External System Interface | Relational Database Service | Cloud Network connection | SQL/Database APIs | SQL queries, system data records (users, reports, messages). | To safely persist and retrieve all structured data of the system. |
+| IF-09 | External System Interface | Cloud Hosting and Storage System | Cloud Network connection | Cloud Storage APIs | Image files (.jpg, .png, etc.). | To store and serve the photos attached to citizen reports (up to 3 per report). |
+| IF-10 | External System Interface | Notification Service | Internet connection | Notification APIs | Notification payloads (email content, system alerts). | To keep users updated automatically when a report status changes or a message is received. |
 
 ---
 
