@@ -1,12 +1,12 @@
 # 1) Stakeholders
 
-| ID | Stakeholder name | Description | Role | Main concerns | Relative priority |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| STK-01 | Unregistered User | Visitor accessing the platform without authentication. | Consult public reports and explore issues on the map. | Ease of use, accessibility, clarity of information, no mandatory registration barriers. | Low |
-| STK-02 | Registered Citizen | Authenticated user who interacts actively with the platform. | Submit reports, upload photos, track status, follow issues, communicate with offices. | Usability, responsiveness, transparency of report status, privacy of personal data. | High |
-| STK-03 | Admin | Platform-level manager with extended privileges. | Manage users, oversee system activity, access analytics, enforce policies. | System security, data integrity, moderation workload, reliability of analytics. | Medium |
-| STK-04 | Municipal Office | Public authority responsible for handling reported issues. | Review reports, validate submissions, assign tasks, manage resolution workflows. | Workload management, efficiency, accuracy of reports, accountability, clear communication. | High |
-| STK-05 | System Administrator | Technical operator responsible for infrastructure and system maintenance. | Maintain infrastructure, ensure deployment, backups, security, and system performance. | System reliability, uptime, scalability, security threats, disaster recovery readiness. | Medium |
+| ID     | Stakeholder name     | Description                                                               | Role                                                                                   | Main concerns                                                                              | Relative priority |
+| :----- | :------------------- | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- | :---------------- |
+| STK-01 | Unregistered User    | Visitor accessing the platform without authentication.                    | Consult public reports and explore issues on the map.                                  | Ease of use, accessibility, clarity of information, no mandatory registration barriers.    | Low               |
+| STK-02 | Registered Citizen   | Authenticated user who interacts actively with the platform.              | Submit reports, upload photos, track status, follow issues, communicate with offices.  | Usability, responsiveness, transparency of report status, privacy of personal data.        | High              |
+| STK-03 | Admin                | Platform-level manager with extended privileges.                          | Manage users, oversee system activity, access analytics, enforce policies.             | System security, data integrity, moderation workload, reliability of analytics.            | Medium            |
+| STK-04 | Municipal Office     | Public authority responsible for handling reported issues.                | Review reports, validate submissions, assign tasks, manage resolution workflows.       | Workload management, efficiency, accuracy of reports, accountability, clear communication. | High              |
+| STK-05 | System Administrator | Technical operator responsible for infrastructure and system maintenance. | Maintain infrastructure, ensure deployment, backups, security, and system performance. | System reliability, uptime, scalability, security threats, disaster recovery readiness.    | Medium            |
 
 **Rationale and Justification:**
 Stakeholders were identified by analyzing the primary users of the system (citizens) and the entities responsible for managing the reports (Municipal Office, Admins). *Registered Citizens* and the *Municipal Office* are assigned the highest priority since they are the core actors driving the system's workflow (submitting and resolving issues). *Admins* and *System Administrators* have a medium priority as they support the system's daily operations and security. *Unregistered users* have low priority as their interaction is limited to read-only public views.
@@ -21,18 +21,18 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 
 # 3) Interfaces
 
-| ID | Interface | Actor | Physical interface | Logical interface | Exchanged data | Purpose (Why it is needed) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| IF-01 | User Interface | Unregistered User | Smartphone/PC with internet connection | Web GUI | Read-only report data, map tiles, public statistics. | To allow citizens to consult public issues and statistics without logging in. |
-| IF-02 | User Interface | Registered Citizen | Smartphone/PC with internet connection | Web GUI | Report details (text, photos, coordinates), login credentials, messages. | To enable authenticated users to submit, track reports, and communicate. |
-| IF-03 | User Interface | Admin | Smartphone/PC with internet connection | Web GUI | User roles, advanced analytics data, system configuration. | To allow platform management and visualization of advanced private statistics. |
-| IF-04 | User Interface | Municipal Office | Workstation/PC with internet connection | Web GUI | Report status updates, clarification messages, task assignments. | To enable operators to process, validate, and manage the lifecycle of reports. |
-| IF-05 | User Interface | System Administrator | Workstation with secure access (SSH/VPN) | Web GUI / CLI | Server logs, deployment commands, backup data. | To maintain system infrastructure, ensure uptime, and manage disaster recovery. |
-| IF-06 | External System Interface | Map Geo-Location Service | Internet connection | Map/Geo-Location APIs | GPS coordinates (latitude/longitude), map tiles. | To geo-locate issues visually on the interactive city map during submission and consultation. |
-| IF-07 | External System Interface | Authentication System | Internet connection | Authentication APIs | User credentials, authentication tokens. | To verify identities and secure user access to the platform. |
-| IF-08 | External System Interface | Relational Database Service | Cloud Network connection | SQL/Database APIs | SQL queries, system data records (users, reports, messages). | To safely persist and retrieve all structured data of the system. |
-| IF-09 | External System Interface | Cloud Hosting and Storage System | Cloud Network connection | Cloud Storage APIs | Image files (.jpg, .png, etc.). | To store and serve the photos attached to citizen reports (up to 3 per report). |
-| IF-10 | External System Interface | Notification Service | Internet connection | Notification APIs | Notification payloads (email content, system alerts). | To keep users updated automatically when a report status changes or a message is received. |
+| ID    | Interface                 | Actor                            | Physical interface                       | Logical interface     | Exchanged data                                                           | Purpose (Why it is needed)                                                                    |
+| :---- | :------------------------ | :------------------------------- | :--------------------------------------- | :-------------------- | :----------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| IF-01 | User Interface            | Unregistered User                | Smartphone/PC with internet connection   | Web GUI               | Read-only report data, map tiles, public statistics.                     | To allow citizens to consult public issues and statistics without logging in.                 |
+| IF-02 | User Interface            | Registered Citizen               | Smartphone/PC with internet connection   | Web GUI               | Report details (text, photos, coordinates), login credentials, messages. | To enable authenticated users to submit, track reports, and communicate.                      |
+| IF-03 | User Interface            | Admin                            | Smartphone/PC with internet connection   | Web GUI               | User roles, advanced analytics data, system configuration.               | To allow platform management and visualization of advanced private statistics.                |
+| IF-04 | User Interface            | Municipal Office                 | Workstation/PC with internet connection  | Web GUI               | Report status updates, clarification messages, task assignments.         | To enable operators to process, validate, and manage the lifecycle of reports.                |
+| IF-05 | User Interface            | System Administrator             | Workstation with secure access (SSH/VPN) | Web GUI / CLI         | Server logs, deployment commands, backup data.                           | To maintain system infrastructure, ensure uptime, and manage disaster recovery.               |
+| IF-06 | External System Interface | Map Geo-Location Service         | Internet connection                      | Map/Geo-Location APIs | GPS coordinates (latitude/longitude), map tiles.                         | To geo-locate issues visually on the interactive city map during submission and consultation. |
+| IF-07 | External System Interface | Authentication System            | Internet connection                      | Authentication APIs   | User credentials, authentication tokens.                                 | To verify identities and secure user access to the platform.                                  |
+| IF-08 | External System Interface | Relational Database Service      | Cloud Network connection                 | SQL/Database APIs     | SQL queries, system data records (users, reports, messages).             | To safely persist and retrieve all structured data of the system.                             |
+| IF-09 | External System Interface | Cloud Hosting and Storage System | Cloud Network connection                 | Cloud Storage APIs    | Image files (.jpg, .png, etc.).                                          | To store and serve the photos attached to citizen reports (up to 3 per report).               |
+| IF-10 | External System Interface | Notification Service             | Internet connection                      | Notification APIs     | Notification payloads (email content, system alerts).                    | To keep users updated automatically when a report status changes or a message is received.    |
 
 ---
 
@@ -53,23 +53,23 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 
 # 5) User Stories
 
-| ID  | Persona/Role | User story (As a… I want… so that…) |
-|:------|:-------------|:------------------------------------|
-| US-01 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to explore reports so that I can understand issues in my city                   |
-| US-02 | Unregistered User/ Registered Citizen  | As an Unregistered User/Registered Citizen, I want to see updates of reports over time so that I can track their progress               |
-| US-03 | Unregistered User/ Registered Citizen  | As an Unregistered User/Registered Citizen I want to view public analytics filtered by category or by day/week/month so that I can analyze trends                 |
-| US-04 | Registered Citizen   | As a Registered Citizen, I want to report issues on the map so that I can notify the Municipal Office about problems                |
-| US-05 | Registered Citizen   | As a Registered Citizen, I want to track updates on my created reports so that I can know their status                   |
-| US-06 | Registered Citizen   | As a Registered Citizen, I want to receive notifications on followed reports (optionally by email) so that I stay informed                  |
-| US-07 | Registered Citizen   | As a Registered Citizen, I want to upload photos to a report so that I can provide visual evidence |
-| US-08 | Registered Citizen       | As a Registered Citizen, I want to mark a report as anonymous so that my identity is not publicly visible.                   |
-| US-09 | Registered Citizen       | As a Registered Citizen, I want to assign a category to a report so that it can be handled by the correct Municipal Office                   |
-| US-10 | Registered Citizen       | As a Registered Citizen, I want to send messages to the Municipal Office so that I can provide or receive clarifications                   |
-| US-11 | Municipal Office       | As a Municipal Office, I want to review incoming reports so that I can assess their validity     |
-| US-12 | Municipal Office       | As a Municipal Office, I want to assign tasks so that reports are handled by the appropriate team     |
-| US-13 | Municipal Office       | As a Municipal Office, I want to update the status of reports so that citizens are informed about the progress     |
-| US-14 | Municipal Office       | As a Municipal Office, I want to validate or reject reports so that only relevant issues are processed     |
-| US-15 | Municipal Office       | As a Municipal Office, I want to request clarification from citizens so that I can better understand reported issues     |
+| ID    | Persona/Role                          | User story (As a… I want… so that…)                                                                                                               |
+| :---- | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| US-01 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to explore reports so that I can understand issues in my city                                  |
+| US-02 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to see updates of reports over time so that I can track their progress                         |
+| US-03 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen I want to view public analytics filtered by category or by day/week/month so that I can analyze trends |
+| US-04 | Registered Citizen                    | As a Registered Citizen, I want to report issues on the map so that I can notify the Municipal Office about problems                              |
+| US-05 | Registered Citizen                    | As a Registered Citizen, I want to track updates on my created reports so that I can know their status                                            |
+| US-06 | Registered Citizen                    | As a Registered Citizen, I want to receive notifications on followed reports (optionally by email) so that I stay informed                        |
+| US-07 | Registered Citizen                    | As a Registered Citizen, I want to upload photos to a report so that I can provide visual evidence                                                |
+| US-08 | Registered Citizen                    | As a Registered Citizen, I want to mark a report as anonymous so that my identity is not publicly visible.                                        |
+| US-09 | Registered Citizen                    | As a Registered Citizen, I want to assign a category to a report so that it can be handled by the correct Municipal Office                        |
+| US-10 | Registered Citizen                    | As a Registered Citizen, I want to send messages to the Municipal Office so that I can provide or receive clarifications                          |
+| US-11 | Municipal Office                      | As a Municipal Office, I want to review incoming reports so that I can assess their validity                                                      |
+| US-12 | Municipal Office                      | As a Municipal Office, I want to assign tasks so that reports are handled by the appropriate team                                                 |
+| US-13 | Municipal Office                      | As a Municipal Office, I want to update the status of reports so that citizens are informed about the progress                                    |
+| US-14 | Municipal Office                      | As a Municipal Office, I want to validate or reject reports so that only relevant issues are processed                                            |
+| US-15 | Municipal Office                      | As a Municipal Office, I want to request clarification from citizens so that I can better understand reported issues                              |
 
 
 ---
@@ -85,6 +85,18 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 
 # 7) Non-Functional Requirements (NFR)
 
-| ID   | Category | Requirement statement | Metric / Target | Verification              | Priority | Notes |
-|:-------|:---------|:----------------------|:----------------|:---------------------------------------|:---------|:------|
-| NFR-XX |     |            |         |                    |     |    |
+| ID     | Category       | Requirement statement                                                                                                                                                   | Metric / Target                     | Verification | Priority  | Notes                                                                                       |
+| :----- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------- | :----------- | :-------- | :------------------------------------------------------------------------------------------ |
+| NFR-01 | Efficiency     | The web pages shall load within 5 seconds for at least 95% of the requests                                                                                              | Speed                               | Test         | Important |                                                                                             |
+| NFR-02 | Efficiency     | Photo upload for profile or report shall complete within 10 seconds for at least 95% of the requests                                                                    | Speed                               | Test         | Important |                                                                                             |
+| NFR-03 | Efficiency     | Registered Users shall be able to login within 7 seconds report shall complete within 10 seconds for at least 95% of the requests                                       | Speed                               | Test         | Important |                                                                                             |
+| NFR-04 | Efficiency     | The Web UI shall consume less than 500MB of memory in the browser                                                                                                       | Memory                              | Inspection   | Important |                                                                                             |
+| NFR-05 | Maintenability | The system shall allow a feature to be integrated within 250 ph of development                                                                                          | Effort (person x hour)              | Analysis     | Important |                                                                                             |
+| NFR-06 | Maintenability | The system shall allow a bug to be fixed within 90 ph of development                                                                                                    | Effort (person x hour)              | Analysis     | Critical  |                                                                                             |
+| NFR-07 | Maintenability | The system shall allow the porting to a mobile application within 1000 ph of development                                                                                | Effort (person x hour)              | Analysis     | Important | **Assumption** that in the future may be desirable to develop a mobile application  derable |
+| NFR-08 | Maintenability | Each photo uploaded in the system shall be smaller than 2MB                                                                                                             | Size (MB)                           | Inspection   | Important | To reduce cloud usage                                                                       |
+| NFR-09 | Usability      | A User shall do less than 3 errors per day after learning the system for 3 minutes                                                                                      | Number of errors / Time             | Test         | Important |                                                                                             |
+| NFR-10 | Usability      | A User with visual impairments shall do less than 10 errors per day after learning the system for 10 minutes                                                            | Number of errors / Time             | Test         | Important |                                                                                             |
+| NFR-11 | Reliability    | The website shall be reachable for at least 99% of the time with down time shorter than 2 hours                                                                         | Time                                | Analysis     | Critical  |                                                                                             |
+| NFR-12 | Portability    | The system shall be compatible at least with the principal browser engines (e.g. blink, gecko, goanna, webkit) by covering at least the 99% of the market share         | Percentage of market share coverage | Inspection   | Important |                                                                                             |
+| NFR-13 | Portability    | The system shall be compatible at least with the principal screen form factor and ratio (e.g. mobile, tablet, desktop) by covering at least the 99% of the market share | Percentage of market share coverage | Inspection   | Important |                                                                                             |
