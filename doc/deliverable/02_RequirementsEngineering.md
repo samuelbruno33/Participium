@@ -76,9 +76,41 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 
 # 6) Functional Requirements (FR)
 
-| ID  | Requirement statement (The system shall…) | Priority | User story ID | Notes |
+| ID | Requirement statement (The system shall…) | Priority | User story ID | Notes |
 |:------|:------------------------------------------|:---------|:--------------|:------|
-| FR-XX |                      |     |        |    |
+| FR-1  |The system shall provide means to create and manage user accounts|     |     |    |
+| 1.1   |The system shall allow users to define and update profile information|Critical|     |    |
+| 1.2   |The system shall verify user email addresses through a verification process|Critical|     |    |
+| 1.3   |The system shall allow users to store and manage preferences including optional profile photo and email notification|Important|     |    |
+| 1.4   |The system shall allow users to log in|Critical|     |    |
+| FR-2  |The system shall provide means to submit reports|     ||    |
+| 2.1   |The system shall allow citizens to select a geo-location on the map using the map service to report an issue|Critical|US-04     |    |
+| 2.2   |The system shall allow citizens to upload up to 3 photos per report |Important|US-07     |    |
+| 2.3   |The system shall allow citizens to assign a category to a report|Critical|US-09     |    |
+| 2.4   |The system shall allow citizens to mark a report as anonymous for public visibility|Important|US-08     |    |
+| FR-3  |The system shall manage the lifecycle of reports|     ||    |
+| 3.1   |The system shall allow municipal operators to update the status of reports|Critical|US-13     |    |
+| 3.2   |The system shall allow municipal operators to validate or reject reports|Critical|US-14     |    |
+| FR-4  |The system shall provide means to browse and explore reports|     ||    |
+| 4.1   |The system shall display reports on an interactive map using the map service|Critical|US-01     |    |
+| 4.2   |The system shall provide a table view of reports|Important|     |    |
+| 4.3   |The system shall allow filtering by category, status, and time period or relevant attributes|Important|     |    |
+| 4.4   |The system shall allow exporting report data in CSV format|Optional|     |    |
+| FR-5  |The system shall provide report tracking capabilities|     ||    |
+| 5.1   |The system shall provide a report detail view to users including updates over time|Critical|US-02     |    |
+| 5.2   |The system shall allow users to track updates over time for reports they have created|Critical|US-05     |    |
+| FR-6  |The system shall provide notification mechanisms|     ||    |
+| 6.1   |The system shall notify the citizens following the report when the report status changes|Important|US-06     |    |
+| 6.2   |The system shall support optional email notifications based on user preferences|Important|US-06     |    |
+| FR-7  |The system shall provide messaging functionality between citizens and municipal offices|     ||    |
+| 7.1   |The system shall allow citizens to send messages to municipal operators|Important|US-10     |    |
+| 7.2   |The system shall allow municipal operators to request clarifications from citizens|Important|US-15     |    |
+| FR-8  |The system shall support report management by municipal offices|     ||    |
+| 8.1   |The system shall allow operators to review incoming reports|Critical|US-11     |    |
+| 8.2   |The system shall allow assignment of reports to appropriate teams|Important|US-12     |    |
+| FR-9  |The system shall provide statistical information|     ||    |
+| 9.1   |The system shall display public statistics to all users|Important|US-03     |    |
+| 9.2   |he system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|     |    |
 
 
 ---
