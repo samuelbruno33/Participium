@@ -84,7 +84,7 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | FR-1.3   |The system shall allow users to store and manage preferences including optional profile photo and email notification|Important|     |    |
 | FR-1.4   |The system shall allow users to log in|Critical|     |    |
 | FR-2  |The system shall provide means to submit reports|     ||    |
-| FR-2.1   |The system shall allow citizens to select a geo-location on the map using the map service to report an issue|Critical|US-04     |    |
+| FR-2.1   |The system shall allow citizens to submit a report by specifying a geo-location on the map and providing a description of the issue.|Critical|US-04     |    |
 | FR-2.2   |The system shall allow citizens to upload up to 3 photos per report |Important|US-07     |    |
 | FR-2.3   |The system shall allow citizens to assign a category to a report|Critical|US-09     |    |
 | FR-2.4   |The system shall allow citizens to mark a report as anonymous for public visibility|Important|US-08     |    |
@@ -111,7 +111,7 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | FR-8.2   |The system shall allow assignment of reports to appropriate teams|Important|US-12     |    |
 | FR-9  |The system shall provide statistical information|     ||    |
 | FR-9.1   |The system shall display public statistics to all users|Important|US-03     |    |
-| FR-9.2   |he system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|     |    |
+| FR-9.2   |The system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|     |    |
 
 
 ---
