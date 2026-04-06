@@ -296,4 +296,19 @@ Add one narrative for each use case shown in the diagram.
 
 | UC ID | REQ ID |
 | :---- | :----- |
-| UC-XX | FR-XX  |
+| UC-01 | FR-1.1, FR-1.2, FR-1.3   |
+| UC-02 | FR-1.4   |
+| UC-03 | FR-5.1   |
+| UC-04 | FR-9.1   |
+| UC-05 |    |
+| UC-06 | FR-5.1   |
+| UC-07 | FR-2.1   |
+| UC-08 | FR-5.3   |
+| UC-09 | FR-6.1   |
+| UC-10 | FR-2.2   |
+| UC-11 | FR-7.1   |
+| UC-12 | FR-8.1   |
+| UC-13 | FR-8.2   |
+| UC-14 | FR-3.1   |
+| UC-15 | FR-3.2   |
+| UC-16 | FR-7.2   |
