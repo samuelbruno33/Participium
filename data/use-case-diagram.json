@@ -2,7 +2,7 @@
   "version": "3.0.0",
   "type": "UseCaseDiagram",
   "size": {
-    "width": 1500,
+    "width": 1600,
     "height": 2740
   },
   "interactive": {
@@ -17,7 +17,7 @@
       "owner": null,
       "bounds": {
         "x": -650,
-        "y": -240,
+        "y": -350,
         "width": 80,
         "height": 140
       }
@@ -41,7 +41,7 @@
       "owner": null,
       "bounds": {
         "x": -650,
-        "y": 970,
+        "y": 1130,
         "width": 80,
         "height": 140
       }
@@ -52,8 +52,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -420,
-        "y": -390,
+        "x": -390,
+        "y": -660,
         "width": 170,
         "height": 100
       }
@@ -64,8 +64,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -210,
-        "y": -360,
+        "x": -190,
+        "y": -620,
         "width": 170,
         "height": 100
       }
@@ -76,8 +76,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -310,
-        "y": -260,
+        "x": -240,
+        "y": -500,
         "width": 170,
         "height": 100
       }
@@ -88,8 +88,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -30,
-        "y": -190,
+        "x": 30,
+        "y": -470,
         "width": 220,
         "height": 100
       }
@@ -100,8 +100,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -300,
-        "y": -110,
+        "x": -230,
+        "y": -360,
         "width": 230,
         "height": 100
       }
@@ -112,8 +112,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 420,
-        "y": -240,
+        "x": 480,
+        "y": -460,
         "width": 190,
         "height": 100
       }
@@ -124,8 +124,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 460,
-        "y": 0,
+        "x": 480,
+        "y": 120,
         "width": 230,
         "height": 100
       }
@@ -136,8 +136,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 520,
-        "y": 710,
+        "x": 610,
+        "y": 750,
         "width": 170,
         "height": 100
       }
@@ -148,8 +148,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 430,
-        "y": 340,
+        "x": 490,
+        "y": 380,
         "width": 290,
         "height": 100
       }
@@ -160,8 +160,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 510,
-        "y": 530,
+        "x": 550,
+        "y": 600,
         "width": 220,
         "height": 100
       }
@@ -172,8 +172,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -130,
-        "y": 20,
+        "x": -50,
+        "y": -270,
         "width": 300,
         "height": 100
       }
@@ -184,8 +184,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -60,
-        "y": 160,
+        "x": 0,
+        "y": 190,
         "width": 160,
         "height": 100
       }
@@ -196,8 +196,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -240,
-        "y": 270,
+        "x": -200,
+        "y": 290,
         "width": 250,
         "height": 100
       }
@@ -208,7 +208,7 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -300,
+        "x": -320,
         "y": 400,
         "width": 380,
         "height": 100
@@ -221,7 +221,7 @@
       "owner": null,
       "bounds": {
         "x": -40,
-        "y": 530,
+        "y": 540,
         "width": 270,
         "height": 100
       }
@@ -232,8 +232,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -280,
-        "y": 640,
+        "x": -180,
+        "y": 650,
         "width": 330,
         "height": 100
       }
@@ -244,8 +244,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -130,
-        "y": 760,
+        "x": -180,
+        "y": 830,
         "width": 190,
         "height": 100
       }
@@ -256,8 +256,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -90,
-        "y": 880,
+        "x": 50,
+        "y": 900,
         "width": 170,
         "height": 100
       }
@@ -268,8 +268,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": -90,
-        "y": 1000,
+        "x": -10,
+        "y": 1020,
         "width": 290,
         "height": 100
       }
@@ -280,8 +280,8 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": 120,
-        "y": 1120,
+        "x": 190,
+        "y": 1130,
         "width": 250,
         "height": 100
       }
@@ -292,45 +292,86 @@
       "type": "UseCase",
       "owner": null,
       "bounds": {
-        "x": 160,
+        "x": 250,
         "y": 1250,
         "width": 430,
+        "height": 100
+      }
+    },
+    "e1a571e5-139d-4ddc-8a44-fb2876825608": {
+      "id": "e1a571e5-139d-4ddc-8a44-fb2876825608",
+      "name": "UC17 Exporting Reports",
+      "type": "UseCase",
+      "owner": null,
+      "bounds": {
+        "x": -10,
+        "y": -150,
+        "width": 300,
+        "height": 100
+      }
+    },
+    "09b8cae4-81cb-45d9-87ae-f96463b4ccb1": {
+      "id": "09b8cae4-81cb-45d9-87ae-f96463b4ccb1",
+      "name": "UC18 Filter reports by all available criteria",
+      "type": "UseCase",
+      "owner": null,
+      "bounds": {
+        "x": -80,
+        "y": -40,
+        "width": 340,
+        "height": 100
+      }
+    },
+    "f06e6c5d-74e5-4193-bdd5-c5861b7a5115": {
+      "id": "f06e6c5d-74e5-4193-bdd5-c5861b7a5115",
+      "name": "System Administrator",
+      "type": "UseCaseActor",
+      "owner": null,
+      "bounds": {
+        "x": -650,
+        "y": 780,
+        "width": 80,
+        "height": 140
+      }
+    },
+    "9e574bc9-9cc3-4dd8-9535-00b163bf9648": {
+      "id": "9e574bc9-9cc3-4dd8-9535-00b163bf9648",
+      "name": "UC21 Visualize Extended Analytics",
+      "type": "UseCase",
+      "owner": null,
+      "bounds": {
+        "x": -450,
+        "y": 760,
+        "width": 290,
+        "height": 100
+      }
+    },
+    "278dfbe0-155c-4a82-9744-445960a491b1": {
+      "id": "278dfbe0-155c-4a82-9744-445960a491b1",
+      "name": "UC19 Visualize report on map",
+      "type": "UseCase",
+      "owner": null,
+      "bounds": {
+        "x": -150,
+        "y": 60,
+        "width": 250,
+        "height": 100
+      }
+    },
+    "d3ec96b7-7b6a-4a38-958b-b40d7af458dd": {
+      "id": "d3ec96b7-7b6a-4a38-958b-b40d7af458dd",
+      "name": "UC20 Visualize report on table",
+      "type": "UseCase",
+      "owner": null,
+      "bounds": {
+        "x": -400,
+        "y": 130,
+        "width": 250,
         "height": 100
       }
     }
   },
   "relationships": {
-    "3f2f219d-77d0-4884-8164-1c395e65e707": {
-      "id": "3f2f219d-77d0-4884-8164-1c395e65e707",
-      "name": "",
-      "type": "UseCaseAssociation",
-      "owner": null,
-      "bounds": {
-        "x": -570,
-        "y": -340,
-        "width": 150,
-        "height": 170
-      },
-      "path": [
-        {
-          "x": 0,
-          "y": 170
-        },
-        {
-          "x": 150,
-          "y": 0
-        }
-      ],
-      "source": {
-        "direction": "Right",
-        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
-      },
-      "target": {
-        "direction": "Left",
-        "element": "62d5085a-cb7b-4846-be58-f83ff3aa2b42"
-      },
-      "isManuallyLayouted": false
-    },
     "da631430-e261-42d1-9418-80dc57785fd7": {
       "id": "da631430-e261-42d1-9418-80dc57785fd7",
       "name": "",
@@ -338,17 +379,17 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": -310,
-        "width": 360,
-        "height": 140
+        "y": -570,
+        "width": 380,
+        "height": 290
       },
       "path": [
         {
           "x": 0,
-          "y": 140
+          "y": 290
         },
         {
-          "x": 360,
+          "x": 380,
           "y": 0
         }
       ],
@@ -369,18 +410,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": -210,
-        "width": 260,
-        "height": 40
+        "y": -450,
+        "width": 330,
+        "height": 170
       },
       "path": [
         {
-          "x": 260,
+          "x": 330,
           "y": 0
         },
         {
           "x": 0,
-          "y": 40
+          "y": 170
         }
       ],
       "source": {
@@ -400,18 +441,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": -170,
-        "width": 540,
-        "height": 30
+        "y": -420,
+        "width": 600,
+        "height": 140
       },
       "path": [
         {
-          "x": 540,
-          "y": 30
+          "x": 600,
+          "y": 0
         },
         {
           "x": 0,
-          "y": 0
+          "y": 140
         }
       ],
       "source": {
@@ -431,18 +472,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": -170,
-        "width": 270,
-        "height": 110
+        "y": -310,
+        "width": 340,
+        "height": 30
       },
       "path": [
         {
-          "x": 270,
-          "y": 110
+          "x": 340,
+          "y": 0
         },
         {
           "x": 0,
-          "y": 0
+          "y": 30
         }
       ],
       "source": {
@@ -461,18 +502,18 @@
       "type": "UseCaseExtend",
       "owner": null,
       "bounds": {
-        "x": -70,
-        "y": -90,
-        "width": 150,
-        "height": 30
+        "x": 0,
+        "y": -370,
+        "width": 140,
+        "height": 60
       },
       "path": [
         {
           "x": 0,
-          "y": 30
+          "y": 60
         },
         {
-          "x": 150,
+          "x": 140,
           "y": 0
         }
       ],
@@ -492,19 +533,19 @@
       "type": "UseCaseExtend",
       "owner": null,
       "bounds": {
-        "x": -140,
-        "y": -210,
-        "width": 220,
+        "x": -70,
+        "y": -470,
+        "width": 210,
         "height": 20
       },
       "path": [
         {
-          "x": 220,
-          "y": 20
+          "x": 210,
+          "y": 0
         },
         {
           "x": 0,
-          "y": 0
+          "y": 20
         }
       ],
       "source": {
@@ -524,14 +565,14 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": -170,
-        "width": 440,
-        "height": 240
+        "y": -280,
+        "width": 520,
+        "height": 60
       },
       "path": [
         {
-          "x": 440,
-          "y": 240
+          "x": 520,
+          "y": 60
         },
         {
           "x": 0,
@@ -554,15 +595,15 @@
       "type": "UseCaseExtend",
       "owner": null,
       "bounds": {
-        "x": -140,
-        "y": -210,
-        "width": 160,
-        "height": 230
+        "x": -70,
+        "y": -450,
+        "width": 170,
+        "height": 180
       },
       "path": [
         {
-          "x": 160,
-          "y": 230
+          "x": 170,
+          "y": 180
         },
         {
           "x": 0,
@@ -586,14 +627,14 @@
       "owner": null,
       "bounds": {
         "x": -610,
-        "y": -100,
+        "y": -210,
         "width": 1,
-        "height": 420
+        "height": 530
       },
       "path": [
         {
           "x": 0,
-          "y": 420
+          "y": 530
         },
         {
           "x": 0,
@@ -616,15 +657,15 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": -40,
-        "y": -310,
-        "width": 460,
-        "height": 120
+        "x": -20,
+        "y": -570,
+        "width": 500,
+        "height": 160
       },
       "path": [
         {
-          "x": 460,
-          "y": 120
+          "x": 500,
+          "y": 160
         },
         {
           "x": 0,
@@ -647,15 +688,15 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 190,
-        "y": -140,
-        "width": 270,
-        "height": 190
+        "x": 250,
+        "y": -420,
+        "width": 230,
+        "height": 590
       },
       "path": [
         {
-          "x": 270,
-          "y": 190
+          "x": 230,
+          "y": 590
         },
         {
           "x": 0,
@@ -678,19 +719,19 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 170,
-        "y": 50,
-        "width": 290,
-        "height": 20
+        "x": 250,
+        "y": -220,
+        "width": 230,
+        "height": 390
       },
       "path": [
         {
-          "x": 290,
-          "y": 0
+          "x": 230,
+          "y": 390
         },
         {
           "x": 0,
-          "y": 20
+          "y": 0
         }
       ],
       "source": {
@@ -709,15 +750,15 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 100,
-        "y": 210,
+        "x": 160,
+        "y": 240,
         "width": 330,
-        "height": 180
+        "height": 190
       },
       "path": [
         {
           "x": 330,
-          "y": 180
+          "y": 190
         },
         {
           "x": 0,
@@ -741,18 +782,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 210,
-        "width": 510,
-        "height": 180
+        "y": 240,
+        "width": 570,
+        "height": 150
       },
       "path": [
         {
-          "x": 510,
+          "x": 570,
           "y": 0
         },
         {
           "x": 0,
-          "y": 180
+          "y": 150
         }
       ],
       "source": {
@@ -772,18 +813,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 320,
-        "width": 330,
-        "height": 70
+        "y": 340,
+        "width": 370,
+        "height": 50
       },
       "path": [
         {
-          "x": 330,
+          "x": 370,
           "y": 0
         },
         {
           "x": 0,
-          "y": 70
+          "y": 50
         }
       ],
       "source": {
@@ -804,12 +845,12 @@
       "bounds": {
         "x": -570,
         "y": 390,
-        "width": 270,
+        "width": 250,
         "height": 60
       },
       "path": [
         {
-          "x": 270,
+          "x": 250,
           "y": 60
         },
         {
@@ -833,15 +874,15 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 80,
+        "x": 60,
         "y": 450,
-        "width": 440,
-        "height": 310
+        "width": 550,
+        "height": 350
       },
       "path": [
         {
-          "x": 440,
-          "y": 310
+          "x": 550,
+          "y": 350
         },
         {
           "x": 0,
@@ -867,12 +908,12 @@
         "x": -570,
         "y": 390,
         "width": 530,
-        "height": 190
+        "height": 200
       },
       "path": [
         {
           "x": 530,
-          "y": 190
+          "y": 200
         },
         {
           "x": 0,
@@ -895,15 +936,15 @@
       "type": "UseCaseExtend",
       "owner": null,
       "bounds": {
-        "x": 20,
-        "y": 260,
-        "width": 75,
-        "height": 270
+        "x": 80,
+        "y": 290,
+        "width": 15,
+        "height": 250
       },
       "path": [
         {
-          "x": 75,
-          "y": 270
+          "x": 15,
+          "y": 250
         },
         {
           "x": 0,
@@ -928,13 +969,13 @@
       "bounds": {
         "x": -570,
         "y": 390,
-        "width": 290,
-        "height": 300
+        "width": 390,
+        "height": 310
       },
       "path": [
         {
-          "x": 290,
-          "y": 300
+          "x": 390,
+          "y": 310
         },
         {
           "x": 0,
@@ -954,18 +995,18 @@
     "aba67e6a-3311-4c30-a957-e7c880d5a574": {
       "id": "aba67e6a-3311-4c30-a957-e7c880d5a574",
       "name": "",
-      "type": "UseCaseExtend",
+      "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 100,
-        "y": 210,
-        "width": 410,
-        "height": 370
+        "x": 160,
+        "y": 240,
+        "width": 390,
+        "height": 410
       },
       "path": [
         {
-          "x": 410,
-          "y": 370
+          "x": 390,
+          "y": 410
         },
         {
           "x": 0,
@@ -989,17 +1030,17 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 810,
-        "width": 440,
-        "height": 230
+        "y": 880,
+        "width": 390,
+        "height": 320
       },
       "path": [
         {
           "x": 0,
-          "y": 230
+          "y": 320
         },
         {
-          "x": 440,
+          "x": 390,
           "y": 0
         }
       ],
@@ -1020,17 +1061,17 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 930,
-        "width": 480,
-        "height": 110
+        "y": 950,
+        "width": 620,
+        "height": 250
       },
       "path": [
         {
           "x": 0,
-          "y": 110
+          "y": 250
         },
         {
-          "x": 480,
+          "x": 620,
           "y": 0
         }
       ],
@@ -1051,18 +1092,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 1040,
-        "width": 480,
-        "height": 10
+        "y": 1070,
+        "width": 560,
+        "height": 130
       },
       "path": [
         {
-          "x": 480,
-          "y": 10
+          "x": 560,
+          "y": 0
         },
         {
           "x": 0,
-          "y": 0
+          "y": 130
         }
       ],
       "source": {
@@ -1082,18 +1123,18 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 1040,
-        "width": 690,
-        "height": 130
+        "y": 1180,
+        "width": 760,
+        "height": 20
       },
       "path": [
         {
-          "x": 690,
-          "y": 130
+          "x": 760,
+          "y": 0
         },
         {
           "x": 0,
-          "y": 0
+          "y": 20
         }
       ],
       "source": {
@@ -1113,14 +1154,14 @@
       "owner": null,
       "bounds": {
         "x": -570,
-        "y": 1040,
-        "width": 730,
-        "height": 260
+        "y": 1200,
+        "width": 820,
+        "height": 100
       },
       "path": [
         {
-          "x": 730,
-          "y": 260
+          "x": 820,
+          "y": 100
         },
         {
           "x": 0,
@@ -1143,19 +1184,19 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 200,
-        "y": 760,
-        "width": 320,
-        "height": 290
+        "x": 280,
+        "y": 800,
+        "width": 330,
+        "height": 270
       },
       "path": [
         {
-          "x": 320,
+          "x": 330,
           "y": 0
         },
         {
           "x": 0,
-          "y": 290
+          "y": 270
         }
       ],
       "source": {
@@ -1174,14 +1215,14 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 60,
-        "y": 580,
-        "width": 450,
+        "x": 10,
+        "y": 650,
+        "width": 540,
         "height": 230
       },
       "path": [
         {
-          "x": 450,
+          "x": 540,
           "y": 0
         },
         {
@@ -1205,19 +1246,19 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 60,
-        "y": 390,
-        "width": 370,
-        "height": 420
+        "x": 10,
+        "y": 430,
+        "width": 480,
+        "height": 450
       },
       "path": [
         {
-          "x": 370,
+          "x": 480,
           "y": 0
         },
         {
           "x": 0,
-          "y": 420
+          "y": 450
         }
       ],
       "source": {
@@ -1236,19 +1277,19 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 80,
-        "y": 760,
-        "width": 440,
-        "height": 170
+        "x": 220,
+        "y": 800,
+        "width": 390,
+        "height": 150
       },
       "path": [
         {
-          "x": 440,
+          "x": 390,
           "y": 0
         },
         {
           "x": 0,
-          "y": 170
+          "y": 150
         }
       ],
       "source": {
@@ -1267,10 +1308,10 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 375,
-        "y": 760,
+        "x": 465,
+        "y": 800,
         "width": 145,
-        "height": 490
+        "height": 450
       },
       "path": [
         {
@@ -1279,7 +1320,7 @@
         },
         {
           "x": 0,
-          "y": 490
+          "y": 450
         }
       ],
       "source": {
@@ -1298,19 +1339,19 @@
       "type": "UseCaseSupport",
       "owner": null,
       "bounds": {
-        "x": 245,
-        "y": 50,
-        "width": 215,
-        "height": 1070
+        "x": 315,
+        "y": 170,
+        "width": 165,
+        "height": 960
       },
       "path": [
         {
-          "x": 215,
+          "x": 165,
           "y": 0
         },
         {
           "x": 0,
-          "y": 1070
+          "y": 960
         }
       ],
       "source": {
@@ -1320,6 +1361,378 @@
       "target": {
         "direction": "Up",
         "element": "d54faae5-9c67-4d67-a61a-4f7f15e3957e"
+      },
+      "isManuallyLayouted": false
+    },
+    "c1e0254c-53d8-4c05-adcc-a9da243d8a8b": {
+      "id": "c1e0254c-53d8-4c05-adcc-a9da243d8a8b",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": -560,
+        "width": 265,
+        "height": 280
+      },
+      "path": [
+        {
+          "x": 265,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 280
+        }
+      ],
+      "source": {
+        "direction": "Down",
+        "element": "62d5085a-cb7b-4846-be58-f83ff3aa2b42"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
+      },
+      "isManuallyLayouted": false
+    },
+    "333dac94-1e3b-45e6-8232-baaa1670fbea": {
+      "id": "333dac94-1e3b-45e6-8232-baaa1670fbea",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": -280,
+        "width": 560,
+        "height": 180
+      },
+      "path": [
+        {
+          "x": 560,
+          "y": 180
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "e1a571e5-139d-4ddc-8a44-fb2876825608"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
+      },
+      "isManuallyLayouted": false
+    },
+    "cb6f5af1-8a38-4ed9-865c-46ec117f88c3": {
+      "id": "cb6f5af1-8a38-4ed9-865c-46ec117f88c3",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": -280,
+        "width": 490,
+        "height": 290
+      },
+      "path": [
+        {
+          "x": 490,
+          "y": 290
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "09b8cae4-81cb-45d9-87ae-f96463b4ccb1"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
+      },
+      "isManuallyLayouted": false
+    },
+    "9c288995-4d16-4c94-b951-4593995d5545": {
+      "id": "9c288995-4d16-4c94-b951-4593995d5545",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": -280,
+        "width": 420,
+        "height": 390
+      },
+      "path": [
+        {
+          "x": 420,
+          "y": 390
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "278dfbe0-155c-4a82-9744-445960a491b1"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
+      },
+      "isManuallyLayouted": false
+    },
+    "a24b43a6-da46-4007-b675-3d1190ba5a84": {
+      "id": "a24b43a6-da46-4007-b675-3d1190ba5a84",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": -280,
+        "width": 170,
+        "height": 460
+      },
+      "path": [
+        {
+          "x": 170,
+          "y": 460
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "d3ec96b7-7b6a-4a38-958b-b40d7af458dd"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "585e9cfc-b03c-4680-aa43-4a9275e54d93"
+      },
+      "isManuallyLayouted": false
+    },
+    "d2aefb5c-b016-4ccb-bdd5-d4a08503e397": {
+      "id": "d2aefb5c-b016-4ccb-bdd5-d4a08503e397",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": 100,
+        "y": 110,
+        "width": 380,
+        "height": 60
+      },
+      "path": [
+        {
+          "x": 380,
+          "y": 60
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "201c918d-f773-4d25-bab8-bb70bdae583c"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "278dfbe0-155c-4a82-9744-445960a491b1"
+      },
+      "isManuallyLayouted": false
+    },
+    "25faee6c-4ef6-43e7-9bf8-1a2c29e2c591": {
+      "id": "25faee6c-4ef6-43e7-9bf8-1a2c29e2c591",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": -150,
+        "y": 170,
+        "width": 630,
+        "height": 10
+      },
+      "path": [
+        {
+          "x": 630,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 10
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "201c918d-f773-4d25-bab8-bb70bdae583c"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "d3ec96b7-7b6a-4a38-958b-b40d7af458dd"
+      },
+      "isManuallyLayouted": false
+    },
+    "001d0553-1bba-4c1c-90d7-de5eb7b4adb2": {
+      "id": "001d0553-1bba-4c1c-90d7-de5eb7b4adb2",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": 290,
+        "y": -100,
+        "width": 200,
+        "height": 530
+      },
+      "path": [
+        {
+          "x": 200,
+          "y": 530
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "2eaeb188-e278-40c6-82fa-6ea8a8c3fb5a"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "e1a571e5-139d-4ddc-8a44-fb2876825608"
+      },
+      "isManuallyLayouted": false
+    },
+    "2ea895a7-27c0-44f8-9bcc-4e3c06c65528": {
+      "id": "2ea895a7-27c0-44f8-9bcc-4e3c06c65528",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": 260,
+        "y": 10,
+        "width": 220,
+        "height": 160
+      },
+      "path": [
+        {
+          "x": 220,
+          "y": 160
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "201c918d-f773-4d25-bab8-bb70bdae583c"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "09b8cae4-81cb-45d9-87ae-f96463b4ccb1"
+      },
+      "isManuallyLayouted": false
+    },
+    "f8bbedb4-577e-491e-ad2d-30e9483a1dd8": {
+      "id": "f8bbedb4-577e-491e-ad2d-30e9483a1dd8",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": 100,
+        "y": 110,
+        "width": 450,
+        "height": 540
+      },
+      "path": [
+        {
+          "x": 450,
+          "y": 540
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "5e0ecd15-4b68-469d-81fb-443f923afb9d"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "278dfbe0-155c-4a82-9744-445960a491b1"
+      },
+      "isManuallyLayouted": false
+    },
+    "2b0b6370-f289-4b23-9931-47d3f3759f6f": {
+      "id": "2b0b6370-f289-4b23-9931-47d3f3759f6f",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": -305,
+        "y": 170,
+        "width": 785,
+        "height": 590
+      },
+      "path": [
+        {
+          "x": 785,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 590
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "201c918d-f773-4d25-bab8-bb70bdae583c"
+      },
+      "target": {
+        "direction": "Up",
+        "element": "9e574bc9-9cc3-4dd8-9535-00b163bf9648"
+      },
+      "isManuallyLayouted": false
+    },
+    "108f09fb-c07c-41e1-b5ce-288e2e90cfe4": {
+      "id": "108f09fb-c07c-41e1-b5ce-288e2e90cfe4",
+      "name": "",
+      "type": "UseCaseAssociation",
+      "owner": null,
+      "bounds": {
+        "x": -570,
+        "y": 810,
+        "width": 120,
+        "height": 40
+      },
+      "path": [
+        {
+          "x": 0,
+          "y": 40
+        },
+        {
+          "x": 120,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Right",
+        "element": "f06e6c5d-74e5-4193-bdd5-c5861b7a5115"
+      },
+      "target": {
+        "direction": "Left",
+        "element": "9e574bc9-9cc3-4dd8-9535-00b163bf9648"
       },
       "isManuallyLayouted": false
     }
