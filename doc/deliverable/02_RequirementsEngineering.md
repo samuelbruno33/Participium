@@ -55,21 +55,29 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 
 | ID    | Persona/Role                          | User story (As a… I want… so that…)                                                                                                               |
 | :---- | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| US-01 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to explore reports so that I can understand issues in my city                                  |
-| US-02 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to see updates of reports over time so that I can track their progress                         |
-| US-03 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen I want to view public analytics filtered by category or by day/week/month so that I can analyze trends |
-| US-04 | Registered Citizen                    | As a Registered Citizen, I want to report issues on the map so that I can notify the Municipal Office about problems                              |
-| US-05 | Registered Citizen                    | As a Registered Citizen, I want to track updates on my created reports so that I can know their status                                            |
-| US-06 | Registered Citizen                    | As a Registered Citizen, I want to receive notifications on followed reports (optionally by email) so that I stay informed                        |
-| US-07 | Registered Citizen                    | As a Registered Citizen, I want to upload photos to a report so that I can provide visual evidence                                                |
-| US-08 | Registered Citizen                    | As a Registered Citizen, I want to mark a report as anonymous so that my identity is not publicly visible.                                        |
-| US-09 | Registered Citizen                    | As a Registered Citizen, I want to assign a category to a report so that it can be handled by the correct Municipal Office                        |
-| US-10 | Registered Citizen                    | As a Registered Citizen, I want to send messages to the Municipal Office so that I can provide or receive clarifications                          |
-| US-11 | Municipal Office                      | As a Municipal Office, I want to review incoming reports so that I can assess their validity                                                      |
-| US-12 | Municipal Office                      | As a Municipal Office, I want to assign tasks so that reports are handled by the appropriate team                                                 |
-| US-13 | Municipal Office                      | As a Municipal Office, I want to update the status of reports so that citizens are informed about the progress                                    |
-| US-14 | Municipal Office                      | As a Municipal Office, I want to validate or reject reports so that only relevant issues are processed                                            |
-| US-15 | Municipal Office                      | As a Municipal Office, I want to request clarification from citizens so that I can better understand reported issues                              |
+| US-01 | Unregistered User                     | As an Unregistered User, I want to create an account and verify my email so that I can access the features reserved to authenticated users        |
+| US-02 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to explore reports on the map so that I can visually understand issues in my city                                                                                 |
+| US-03 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to browse reports in a filterable table and export them in CSV so that I can use them for transparency, offline analysis or sharing                               |
+| US-04 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen, I want to open a report detail page so that I can read its description, view its photos and check its current status                                                     |
+| US-05 | Unregistered User/ Registered Citizen | As an Unregistered User/Registered Citizen I want to view public statistics filtered by category or by day/week/month so that I can analyze trends in my city                                                        |
+| US-06 | Registered Citizen                    | As a Registered Citizen, I want to log in so that I can access to my personal features                                                                                                                               |
+| US-07 | Registered Citizen                    | As a Registered Citizen, I want to define and update my profile information so that my data is up to date.                                                                                                                              |
+| US-08 | Registered Citizen                    | As a Registered Citizen, I want to manage my preferences including notification settings and profile picture so that the platform behaves according to my needs                              |
+| US-09 | Registered Citizen                    | As a Registered Citizen, I want to submit a report by selecting a position on the map, writing a description, choosing a category and uploading up to 3 photos so that I can notify the Municipal Office about a problem.      |
+| US-10 | Registered Citizen                    | As a Registered Citizen, I want to track status updates on reports so that I'm always informed about their progress                                          |
+| US-11 | Registered Citizen                    | As a Registered Citizen, I want to receive in-platform notifications (optionally sent by email) on followed reports so that I stay informed                  |
+| US-12 | Registered Citizen                    | As a Registered Citizen, I want to follow reports submitted by other citizens so that I can receive updates about their evolution                            |
+| US-13 | Registered Citizen                    | As a Registered Citizen, I want to mark a report as anonymous so that my identity is not publicly visible.                                                   |
+| US-14 | Registered Citizen                    | As a Registered Citizen, I want to reply to the messages of the Municipal Office so that I can provide clarifications about a report                         |
+| US-15 | Municipal Office                      | As a Municipal Office operator, I want to review incoming reports so that I can assess their validity                                                        |
+| US-16 | Municipal Office                      | As a Municipal Office operator, I want to assign a report to the appropriate team so that it's handled correctly                                             |
+| US-17 | Municipal Office                      | As a Municipal Office operator, I want to update the status of a report so that citizens are informed about its progress                                     |
+| US-18 | Municipal Office                      | As a Municipal Office operator, I want to validate or reject a report with an explicit motivation so that only relevant issues are processed                 |
+| US-19 | Municipal Office                      | As a Municipal Office operator, I want to request clarification from citizens so that I can better understand reported issues                                |
+| US-20 | Admin                                 | As an Admin, I want to view private statistics including reports by status, type, reporter and top reporters so that I can monitor platform activity and analyze data    |
+| US-21 | Admin                                 | As an Admin, I want to manage configuration aspects so that I can control access to the platform and enforce policies                                                    |
+
+
 
 
 ---
@@ -79,39 +87,39 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | ID | Requirement statement (The system shall…) | Priority | User story ID | Notes |
 |:------|:------------------------------------------|:---------|:--------------|:------|
 | FR-1  |The system shall provide means to create and manage user accounts|     |     |    |
-| FR-1.1   |The system shall allow users to define and update profile information|Critical|     |    |
-| FR-1.2   |The system shall verify user email addresses through a verification process|Critical|     |    |
-| FR-1.3   |The system shall allow users to store and manage preferences including optional profile photo and email notification|Important|     |    |
-| FR-1.4   |The system shall allow users to log in|Critical|     |    |
+| FR-1.1   |The system shall allow users to define and update profile information|Critical| US-07     |    |
+| FR-1.2   |The system shall verify user email addresses through a verification process|Critical| US-01     |    |
+| FR-1.3   |The system shall allow users to store and manage preferences including optional profile photo and email notification|Important| US-08     |    |
+| FR-1.4   |The system shall allow users to log in|Critical| US-06    |    |
 | FR-2  |The system shall provide means to submit reports|     ||    |
-| FR-2.1   |The system shall allow citizens to submit a report by specifying a geo-location on the map and providing a description of the issue.|Critical|US-04     |    |
-| FR-2.2   |The system shall allow citizens to upload up to 3 photos per report |Important|US-07     |    |
+| FR-2.1   |The system shall allow citizens to submit a report by specifying a geo-location on the map and providing a description of the issue.|Critical|US-09     |    |
+| FR-2.2   |The system shall allow citizens to upload up to 3 photos per report |Important|US-09     |    |
 | FR-2.3   |The system shall allow citizens to assign a category to a report|Critical|US-09     |    |
-| FR-2.4   |The system shall allow citizens to mark a report as anonymous for public visibility|Important|US-08     |    |
+| FR-2.4   |The system shall allow citizens to mark a report as anonymous for public visibility|Important|US-13     |    |
 | FR-3  |The system shall manage the lifecycle of reports|     ||    |
-| FR-3.1   |The system shall allow municipal operators to update the status of reports|Critical|US-13     |    |
-| FR-3.2   |The system shall allow municipal operators to validate or reject reports|Critical|US-14     |    |
+| FR-3.1   |The system shall allow municipal operators to update the status of reports|Critical|US-17     |    |
+| FR-3.2   |The system shall allow municipal operators to validate or reject reports|Critical|US-18     |    |
 | FR-4  |The system shall provide means to browse and explore reports|     ||    |
-| FR-4.1   |The system shall display reports on an interactive map using the map service|Critical|US-01     |    |
-| FR-4.2   |The system shall provide a table view of reports|Important|     |    |
-| FR-4.3   |The system shall allow filtering by category, status, and time period or relevant attributes|Important|     |    |
-| FR-4.4   |The system shall allow exporting report data in CSV format|Optional|     |    |
+| FR-4.1   |The system shall display reports on an interactive map using the map service|Critical|US-02     |    |
+| FR-4.2   |The system shall provide a table view of reports|Important|US-03     |    |
+| FR-4.3   |The system shall allow filtering by category, status, and time period or relevant attributes|Important|US-03    |    |
+| FR-4.4   |The system shall allow exporting report data in CSV format|Optional|US-03     |    |
 | FR-5  |The system shall provide report tracking capabilities|     ||    |
-| FR-5.1   |The system shall provide a report detail view to users including updates over time|Critical|US-02     |    |
-| FR-5.2   |The system shall allow users to track updates over time for reports they have created|Critical|US-05     |    |
-| FR-5.3   |The system shall allow Registered Citizens to follow reports|Important|     |    |
+| FR-5.1   |The system shall provide a report detail view to users including updates over time|Critical|US-04     |    |
+| FR-5.2   |The system shall allow users to track updates over time for reports they have created|Critical|US-10     |    |
+| FR-5.3   |The system shall allow Registered Citizens to follow reports|Important|US-12     |    |
 | FR-6  |The system shall provide notification mechanisms|     ||    |
-| FR-6.1   |The system shall notify the citizens following the report when the report status changes|Important|US-06     |    |
-| FR-6.2   |The system shall support optional email notifications based on user preferences|Important|US-06     |    |
+| FR-6.1   |The system shall notify the citizens following the report when the report status changes|Important|US-11    |    |
+| FR-6.2   |The system shall support optional email notifications based on user preferences|Important|US-11    |    |
 | FR-7  |The system shall provide messaging functionality between citizens and municipal offices|     ||    |
-| FR-7.1   |The system shall allow citizens to send messages to municipal operators|Important|US-10     |    |
-| FR-7.2   |The system shall allow municipal operators to request clarifications from citizens|Important|US-15     |    |
+| FR-7.1   |The system shall allow citizens to send messages to municipal operators|Important|US-14     |    |
+| FR-7.2   |The system shall allow municipal operators to request clarifications from citizens|Important|US-19     |    |
 | FR-8  |The system shall support report management by municipal offices|     ||    |
-| FR-8.1   |The system shall allow operators to review incoming reports|Critical|US-11     |    |
-| FR-8.2   |The system shall allow assignment of reports to appropriate teams|Important|US-12     |    |
+| FR-8.1   |The system shall allow operators to review incoming reports|Critical|US-15     |    |
+| FR-8.2   |The system shall allow assignment of reports to appropriate teams|Important|US-16     |    |
 | FR-9  |The system shall provide statistical information|     ||    |
-| FR-9.1   |The system shall display public statistics to all users|Important|US-03     |    |
-| FR-9.2   |The system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|     |    |
+| FR-9.1   |The system shall display public statistics to all users|Important|US-05     |    |
+| FR-9.2   |The system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|US-20     |    |
 
 
 ---
