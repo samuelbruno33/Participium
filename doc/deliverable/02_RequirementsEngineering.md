@@ -74,7 +74,7 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | US-17 | Municipal Office                      | As a Municipal Office operator, I want to update the status of a report so that citizens are informed about its progress                                     |
 | US-18 | Municipal Office                      | As a Municipal Office operator, I want to validate or reject a report with an explicit motivation so that only relevant issues are processed                 |
 | US-19 | Municipal Office                      | As a Municipal Office operator, I want to request clarification from citizens so that I can better understand reported issues                                |
-| US-20 | Admin                                 | As an Admin, I want to view private statistics including reports by status, type, reporter and top reporters so that I can monitor platform activity and analyze data    |
+| US-20 | System Admin                                 | As a System Admin, I want to view private statistics including reports by status, type, reporter and top reporters so that I can monitor platform activity and analyze data    |
 | US-21 | Admin                                 | As an Admin, I want to manage configuration aspects so that I can control access to the platform and enforce policies                                                    |
 
 
