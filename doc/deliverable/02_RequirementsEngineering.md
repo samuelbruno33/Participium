@@ -106,8 +106,7 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | FR-4.4   |The system shall allow exporting report data in CSV format|Optional|US-03     |    |
 | FR-5  |The system shall provide report tracking capabilities|     ||    |
 | FR-5.1   |The system shall provide a report detail view to users including current status|Critical|US-04     |    |
-| FR-5.2   |The system shall allow users to track updates of reports over time|Critical|US-10     |    |
-| FR-5.3   |The system shall allow Registered Citizens to follow reports|Important|US-12     |    |
+| FR-5.2   |The system shall allow Registered Citizens to follow reports to track updates of them over time|Important|US-10,US-12     |    |
 | FR-6  |The system shall provide notification mechanisms|     ||    |
 | FR-6.1   |The system shall notify the citizens following the report when the report status changes|Important|US-11    |    |
 | FR-6.2   |The system shall support optional email notifications based on user preferences|Important|US-11    |    |
