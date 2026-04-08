@@ -19,7 +19,7 @@ Add one narrative for each use case shown in the diagram.
 | Minimum guarantees | None. |
 | Success guarantees | A new account is created, and the user becomes a Registered Citizen. |
 | Trigger | The user selects the registration option. |
-| Main success scenario | 1. The user asks to register.<br>2. The system shows the signup page asking for user data and password.<br>3. The user inserts the required data.<br>4. The system validates the data via the Authentication System.<br>5. The system confirms the creation of the account. |
+| Main success scenario | 1. The user asks to register.<br>2. The system shows the signup page asking for user data and password.<br>3. The user inserts the required data.<br>4. The user optionally sets preferences such as profile picture and email notifications.<br>5. The system validates the data via the Authentication System.<br>6. The system confirms the creation of the account. |
 | Extensions | 3a. The user cancels the registration.<br>- 3a.1 The use case ends.<br>4a. Invalid data or email already in use.<br>- 4a.1 The system shows an error and restarts from step 2. |
 
 <br>
@@ -390,9 +390,9 @@ Add one narrative for each use case shown in the diagram.
 | UC-04 | FR-9.1   |
 | UC-05 | FR-9.3   |
 | UC-06 | FR-5.1   |
-| UC-07 | FR-2.1   |
-| UC-08 | FR-5.3   |
-| UC-09 | FR-6.1   |
+| UC-07 | FR-2.1, FR-2.3, FR-2.4    |
+| UC-08 | FR-5.2   |
+| UC-09 | FR-6.1, FR-6.2   |
 | UC-10 | FR-2.2   |
 | UC-11 | FR-7.1   |
 | UC-12 | FR-8.1   |
