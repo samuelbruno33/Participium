@@ -292,6 +292,94 @@ Add one narrative for each use case shown in the diagram.
 | Main success scenario | 1. The admin writes a clarification message.<br>2. The system saves the message and puts the report "On Hold".<br>3. The system alerts the citizen via the Notification Service. |
 | Extensions | None. |
 
+| Use Case | UC17 - Exporting Reports |
+| :--- | :--- |
+| ID | UC17 |
+| Scope | Municipal Reporting System |
+| Level | User Goal |
+| Intention in Context | The user wants to download a CSV file of the reports. |
+| Primary actor | Unregistered User |
+| Supporting actors | Relational Database Service |
+| Stakeholders' interests | Citizens: offline data analysis. |
+| Precondition | The user is viewing reports. |
+| Minimum guarantees | None. |
+| Success guarantees | A CSV file is successfully downloaded. |
+| Trigger | The user clicks export. |
+| Main success scenario | 1. The user asks to export reports.<br>2. The system retrieves data from the Relational Database Service.<br>3. The system downloads the file. |
+| Extensions | None. |
+
+<br>
+
+| Use Case | UC18 - Filter reports by all available criteria |
+| :--- | :--- |
+| ID | UC18 |
+| Scope | Municipal Reporting System |
+| Level | User Goal |
+| Intention in Context | The user wants to filter reports by category, status, etc. |
+| Primary actor | Unregistered User |
+| Supporting actors | Relational Database Service |
+| Stakeholders' interests | None. |
+| Precondition | The user is viewing the report table or map. |
+| Minimum guarantees | Previous filters are cleared if invalid. |
+| Success guarantees | Reports are updated according to filters. |
+| Trigger | The user applies a filter. |
+| Main success scenario | 1. The user selects filter parameters.<br>2. The system queries the Relational Database Service.<br>3. The system updates the view. |
+| Extensions | 2a. No reports match the filter.<br>- 2a.1 The system shows an empty state message. |
+
+<br>
+
+| Use Case | UC19 - Visualize report on map |
+| :--- | :--- |
+| ID | UC19 |
+| Scope | Municipal Reporting System |
+| Level | User Goal |
+| Intention in Context | The user wants to view the locations of reports on a city map. |
+| Primary actor | Unregistered User |
+| Supporting actors | Map Geo-Location Service, Relational Database Service |
+| Stakeholders' interests | Citizens: visual understanding of issues. |
+| Precondition | None. |
+| Minimum guarantees | The map is displayed. |
+| Success guarantees | Reports are visualized as markers on the map. |
+| Trigger | The user opens the map view. |
+| Main success scenario | 1. The user accesses the map.<br>2. The system loads the map via Map Geo-Location Service.<br>3. The system fetches reports from the Relational Database Service.<br>4. The system places markers on the map. |
+| Extensions | 2a. Map Geo-Location Service is unavailable.<br>- 2a.1 The system shows an error message. |
+
+<br>
+
+| Use Case | UC20 - Visualize report on table |
+| :--- | :--- |
+| ID | UC20 |
+| Scope | Municipal Reporting System |
+| Level | User Goal |
+| Intention in Context | The user wants to browse reports in a structured list. |
+| Primary actor | Unregistered User |
+| Supporting actors | Relational Database Service |
+| Stakeholders' interests | None. |
+| Precondition | None. |
+| Minimum guarantees | An empty table is shown if database fails. |
+| Success guarantees | The list of reports is shown. |
+| Trigger | The user opens the table view. |
+| Main success scenario | 1. The user accesses the table view.<br>2. The system fetches reports from the Relational Database Service.<br>3. The system displays the rows. |
+| Extensions | None. |
+
+<br>
+
+| Use Case | UC21 - Visualize Extended Analytics |
+| :--- | :--- |
+| ID | UC21 |
+| Scope | Municipal Reporting System |
+| Level | User Goal |
+| Intention in Context | The Sysadmin wants to view advanced analytics about reports and users. |
+| Primary actor | System Administrator |
+| Supporting actors | Relational Database Service |
+| Stakeholders' interests | Sysadmin: monitor platform usage. |
+| Precondition | User is logged in as System Administrator. |
+| Minimum guarantees | None. |
+| Success guarantees | Private statistics are displayed. |
+| Trigger | The admin accesses the private analytics dashboard. |
+| Main success scenario | 1. The admin navigates to private statistics.<br>2. The system queries the Relational Database Service.<br>3. The system displays charts and advanced tables. |
+| Extensions | None. |
+
 # 3) Traceability Table
 
 | UC ID | REQ ID |
@@ -300,7 +388,7 @@ Add one narrative for each use case shown in the diagram.
 | UC-02 | FR-1.4   |
 | UC-03 | FR-5.1   |
 | UC-04 | FR-9.1   |
-| UC-05 |    |
+| UC-05 |          |
 | UC-06 | FR-5.1   |
 | UC-07 | FR-2.1   |
 | UC-08 | FR-5.3   |
@@ -312,3 +400,8 @@ Add one narrative for each use case shown in the diagram.
 | UC-14 | FR-3.1   |
 | UC-15 | FR-3.2   |
 | UC-16 | FR-7.2   |
+| UC-17 | FR-4.4   |
+| UC-18 | FR-4.3   |
+| UC-19 | FR-4.1   |
+| UC-20 | FR-4.2   |
+| UC-21 | FR-9.2   |
