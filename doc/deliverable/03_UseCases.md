@@ -388,7 +388,7 @@ Add one narrative for each use case shown in the diagram.
 | UC-02 | FR-1.4   |
 | UC-03 | FR-5.1   |
 | UC-04 | FR-9.1   |
-| UC-05 |          |
+| UC-05 | FR-9.3   |
 | UC-06 | FR-5.1   |
 | UC-07 | FR-2.1   |
 | UC-08 | FR-5.3   |
