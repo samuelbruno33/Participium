@@ -127,7 +127,7 @@ Add one narrative for each use case shown in the diagram.
 | Minimum guarantees | The system retains a local draft if submission fails. |
 | Success guarantees | The report is created and registered in the system. |
 | Trigger | The user selects "New Report". |
-| Main success scenario | 1. The user asks to create a report.<br>2. The system shows the reporting form.<br>3. The user inserts details (title, description).<br>4. The system acquires the location via Map Geo-Location Service.<br>5. The user confirms data and submits.<br>6. The system saves the report. |
+| Main success scenario | 1. The user asks to create a report.<br>2. The system shows the reporting form.<br>3. The user inserts details (title, description) and selects a category.<br>4. The system acquires the location via Map Geo-Location Service.<br>5. The user optionally can mark the report as anonymous.<br>6. The user confirms data and submits.<br>7. The system saves the report. |
 | Extensions | 4a. Geo-Location Service unavailable.<br>- 4a.1 The user manually selects the location.<br>5a. The user attaches a photo (UC10 starts). |
 
 <br>
@@ -155,7 +155,7 @@ Add one narrative for each use case shown in the diagram.
 | ID | UC9 |
 | Scope | Municipal Reporting System |
 | Level | System Goal |
-| Intention in Context | The user is informed when a tracked report changes status. |
+| Intention in Context | The user is informed about updates on tracked reports with the same type of notifications as for reports they have created. |
 | Primary actor | Registered Citizen |
 | Supporting actors | Notification Service |
 | Stakeholders' interests | None. |
@@ -163,7 +163,7 @@ Add one narrative for each use case shown in the diagram.
 | Minimum guarantees | The update is visible inside the app dashboard. |
 | Success guarantees | A notification is successfully delivered to the user. |
 | Trigger | The Municipal Office updates a tracked report. |
-| Main success scenario | 1. The system detects a status change on a tracked report.<br>2. The system sends an alert via the Notification Service.<br>3. The user receives the notification. |
+| Main success scenario | 1. The system detects a status change on a tracked report.<br>2. The system sends an alert via the Notification Service.<br>3. If the user has enabled email notifications, the system sends an email notification via the Notification Service.<br>4. The user receives the notification. |
 | Extensions | 2a. Notification Service fails.<br>- 2a.1 The system logs the failure; the user sees the update only upon next login. |
 
 <br>
