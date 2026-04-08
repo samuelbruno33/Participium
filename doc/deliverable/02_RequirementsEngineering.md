@@ -120,6 +120,7 @@ Stakeholders were identified by analyzing the primary users of the system (citiz
 | FR-9  |The system shall provide statistical information|     ||    |
 | FR-9.1   |The system shall display public statistics to all users|Important|US-05     |    |
 | FR-9.2   |The system shall provide administrators with access to private statistics including charts and tables about the number of reports by status, type, reporter, their combinations, and top reporters by type|Important|US-20     |    |
+| FR-9.3   |The system shall allow users to filter statistics by category and time period|Important|US-05     |    |
 
 
 ---
