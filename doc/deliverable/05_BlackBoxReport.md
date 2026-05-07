@@ -6,7 +6,19 @@ Prototype: `authenticate(identifier: str, password: str) -> User`
 
 | TC-ID | identifier | password | Expected | Fixture |
 | :---- | :--------- | :------- | :------- | :------ |
-|  |  |  |  |  |
+| TC-01 | "maria.rossi" | "CorrectPassword1!" | **User returned** | Active user (email verified) |
+| TC-02 | "maria.rossi@example.com" | "CorrectPassword1!" | **User returned** | Active user (email verified) |
+| TC-03 | "maria.rossi" | "WrongPassword" | **AuthenticationError** | Active user (email verified) |
+| TC-04 | "nonexistent.user" | "CorrectPassword1!" | **AuthenticationError** | No user exists |
+| TC-05 | "luca.bianchi" | "CorrectPassword1!" | **AuthenticationError** | Inactive user (email verified) |
+| TC-06 | "giulia.verdi" | "CorrectPassword1!" | **AuthenticationError** | Active user (email not verified) |
+| TC-07 | "" | "CorrectPassword1!" | **AuthenticationError** | No user exists |
+| TC-08 | "maria.rossi" | "" | **AuthenticationError** | Active user (email verified) |
+| TC-09 | None | "CorrectPassword1!" | **AttributeError** | Invalid input (None identifier) |
+| TC-10 | "maria.rossi" | None | **AttributeError** | Invalid input (None password) |
+| TC-11 | "   " | "CorrectPassword1!" | **AuthenticationError** | No user exists |
+| TC-12 | "mario.neri" | "CorrectPassword1!" | **AuthenticationError** | Active user (wrong hash) |
+
 
 ## 2 `participium.core.utils.parse_date`
 
@@ -85,7 +97,15 @@ Prototype: `verify_password(password: str, password_hash: str) -> bool`
 
 | TC-ID | password | password_hash | Expected | Fixture |
 | :---- | :------- | :------------ | :------- | :------ |
-|  |  |  |  |  |
+| TC-01 | "CorrectPassword1!" | hash of "CorrectPassword1!" | **True** | correct_hash |
+| TC-02 | "WrongPassword" | hash of "CorrectPassword1!" | **False** | correct_hash |
+| TC-03 | "CorrectPassword1!" | "not_a_valid_hash" | **False** | None |
+| TC-04 | "correctpassword1!" | hash of "CorrectPassword1!" | **False** | correct_hash |
+| TC-05 | "" | hash of "CorrectPassword1!" | **False** | correct_hash |
+| TC-06 | " CorrectPassword1!" | hash of "CorrectPassword1!" | **False** | correct_hash |
+| TC-07 | "CorrectPassword1! " | hash of "CorrectPassword1!" | **False** | correct_hash |
+| TC-08 | None | hash of "CorrectPassword1!" | **AttributeError** | correct_hash |
+| TC-09 | "CorrectPassword1!" | "" | **False** | None |
 
 ## 9 `participium.services.notification_service.NotificationService.create_notification`
 
