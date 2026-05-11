@@ -45,8 +45,13 @@ Allowed transitions:
 `Resolved -> Resolved`.
 
 | TC-ID | current_status | next_status | Expected | Fixture |
-| :---- | :------------- | :---------- | :------- | :------ |
-|  |  |  |  |  |
+|:------| :------------- | :---------- | :------- | :------ |
+| TC-01 | ANY valid `current_status` | Corresponding valid `next_status` (e.g., "Pending Approval" -> "Assigned") | `True` | None required |
+| TC-02 | ANY valid `current_status` | Same as `current_status` (Self-transition) | `True` | None required |
+| TC-03 | "Pending Approval" | "In Progress" / "Suspended" / "Resolved" (Skipping states) | `ValueError` | None required |
+| TC-04 | "Assigned" / "In Progress" / "Suspended" | "Pending Approval" (Backward flow) or "Rejected" (Invalid flow) | `ValueError` | None required |
+| TC-05 | "In Progress" / "Suspended" | "Assigned" (Backward flow) | `ValueError` | None required |
+| TC-06 | "Resolved" / "Rejected" | ANY state different from `current_status` (Escaping terminal state) | `ValueError` | None required |
 
 ## 4 `participium.services.report_service.ReportService.create_report`
 
@@ -123,6 +128,11 @@ Suggested test file: `test_update_profile.py`
 
 Prototype: `update_profile(user: User, username: str | None = None, first_name: str | None = None, last_name: str | None = None, email_notifications_enabled: bool | None = None, profile_picture: FileStorage | None = None) -> User`
 
-| TC-ID | user | username | first_name | last_name | email_notifications_enabled | profile_picture | Expected | Fixture |
-| :---- | :--- | :------- | :--------- | :-------- | :-------------------------- | :-------------- | :------- | :------ |
-|  |  |  |  |  |  |  |  |  |
+| TC-ID   | user | username        | first_name | last_name | email_notifications_enabled | profile_picture | Expected                                                      | Fixture |
+|:--------| :--- |:----------------|:-----------|:----------| :-------------------------- | :-------------- |:--------------------------------------------------------------| :------ |
+| TC-01   | `ValidUser` | new_user        | John       | Doe       | `True` | `None` | `User` object with all text fields updated                    | `ValidUser` exists in DB |
+| TC-02   | `ValidUser` | `None`          | `None`     | `None`    | `False` | `None` | `User` object with only `email_notifications_enabled` updated | `ValidUser` exists in DB |
+| TC-03   | `ValidUser` | `None`          | `None`     | `None`    | `None` | `ValidFileStorage` | `User` object with updated `profile_picture_url`              | `ValidUser` exists in DB, Storage System is accessible |
+| TC-04   | `ValidUser` | "existing_user" | `None`     | `None`    | `None` | `None` | `ValidationError`                                             | `ValidUser` exists in DB, another User with "existing_user" username already exists |
+| TC-05   | `ValidUser` | `""` (Empty)    | `""`       | `None`    | `None` | `None` | `ValidationError`                                             | `ValidUser` exists in DB |
+| TC-06   | `None` | "valid_name"    | `None`     | `None`    | `None` | `None` | `ValidationError` / `TypeError`                               | None required |
