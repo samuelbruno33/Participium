@@ -133,6 +133,6 @@ Prototype: `update_profile(user: User, username: str | None = None, first_name: 
 | TC-01   | `ValidUser` | new_user        | John       | Doe       | `True` | `None` | `User` object with all text fields updated                    | `ValidUser` exists in DB |
 | TC-02   | `ValidUser` | `None`          | `None`     | `None`    | `False` | `None` | `User` object with only `email_notifications_enabled` updated | `ValidUser` exists in DB |
 | TC-03   | `ValidUser` | `None`          | `None`     | `None`    | `None` | `ValidFileStorage` | `User` object with updated `profile_picture_url`              | `ValidUser` exists in DB, Storage System is accessible |
-| TC-04   | `ValidUser` | "existing_user" | `None`     | `None`    | `None` | `None` | `ValidationError`                                             | `ValidUser` exists in DB, another User with "existing_user" username already exists |
+| TC-04   | `ValidUser` | existing_user | `None`     | `None`    | `None` | `None` | `ValidationError`                                             | `ValidUser` exists in DB, another User with "existing_user" username already exists |
 | TC-05   | `ValidUser` | `""` (Empty)    | `""`       | `None`    | `None` | `None` | `ValidationError`                                             | `ValidUser` exists in DB |
-| TC-06   | `None` | "valid_name"    | `None`     | `None`    | `None` | `None` | `ValidationError` / `TypeError`                               | None required |
+| TC-06   | `None` | valid_name    | `None`     | `None`    | `None` | `None` | `ValidationError` / `TypeError`                               | None required |
