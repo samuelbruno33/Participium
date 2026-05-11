@@ -231,6 +231,7 @@ All edges must be traversed at least once.
 | e30 | N32 | N33 |TC-06, TC-07, TC-08, TC-09, TC-10, TC-11, TC-12 |
 
 **Edge coverage = 100% with TC-01..TC-12**
+
 ---
 
 
@@ -258,6 +259,7 @@ All edges must be traversed at least once.
 | R: `payload.get('email_notifications_enabled') is not None` | TC-11 | TC-06 |
 
 **Condition coverage = 100% with TC-01..TC-12**
+
 ---
 
 ### Loop Coverage
