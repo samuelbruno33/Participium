@@ -75,7 +75,14 @@ Prototype: `send_message(report: Report, sender: User, body: str) -> Message`
 
 | TC-ID | report | sender | body | Expected | Fixture |
 | :---- | :----- | :----- | :--- | :------- | :------ |
-|  |  |  |  |  |  |
+| TC-01 | Report(id=10, reporter=User(id=2)) | User(id=1, role=ADMIN, first_name, last_name) | "Normal message" | Message created; sender_id=1; recipient_id=2; repo.add called; notify called; commit called | report exists; reporter user exists; admin sender exists; notification service exists; repository exists |
+| TC-02 | Report(id=10) | None | "Hello?" | AuthorizationError | report exists; sender is None |
+| TC-03 | Report(id=10, reporter_id=1, status_history=[]) | User(id=1, role=CITIZEN) | "Hello?" | ValidationError (no recipient available) | report exists; reporter exists; no messages in repository; empty status history |
+| TC-04 | None | User(id=1, role=ADMIN) | "Valid content" | AttributeError | sender exists; report is None |
+| TC-05 | Report(id=10) | User(id=1, role=ADMIN) | "   " | ValidationError (empty body) | report exists; sender exists; body is whitespace |
+| TC-06 | Report(id=10, reporter_id=2) | User(id=5, role=CITIZEN, id≠reporter) | "Normal Message" | AuthorizationError | report exists; sender exists; sender is not reporter |
+| TC-07 | Report(id=10, category_id=3, reporter=User(id=2)) | User(id=5, role=OPERATOR, category_id=3) | "Operator response" | Message created; recipient_id=2; commit called | report exists; reporter exists; operator exists; matching category; valid repository and session |
+| TC-08 | Report(id=10, category_id=3) | User(id=5, role=OPERATOR, category_id=7) | "Trying to send this message." | AuthorizationError | report exists; reporter exists; operator exists; category mismatch |
 
 ## 8 `participium.core.security.verify_password`
 
@@ -95,7 +102,11 @@ Prototype: `create_notification(user: User | None, notification_type: Notificati
 
 | TC-ID | user | notification_type | title | body | report | Expected | Fixture |
 | :---- | :--- | :---------------- | :---- | :--- | :----- | :------- | :------ |
-|  |  |  |  |  |  |  |  |
+| TC-01 | User(id=1, email_notifications_enabled=False) | STATUS_CHANGE | "Update" | "Your report has been assigned to an operator." | None | Notification created; repo.add called; email NOT sent | user exists; notifications disabled; repo exists; email gateway exists |
+| TC-02 | None | MESSAGE | "New Message" | "You have a new message." | None | None returned; no repo call; no email sent | user is None; repo exists; email gateway exists |
+| TC-03 | User(id=1) | STATUS_CHANGE | "Report Update" | "Body of the notification" | Report(id=10) | Notification created with report_id=10; repo.add called | user exists; report exists; repo exists |
+| TC-04 | User(id=2, email, email_notifications_enabled=True) | SYSTEM | "System Alert" | "System is sending a notification." | None | Notification created; repo.add called; email sent | user exists with email; email notifications enabled; repo exists; email gateway exists |
+| TC-05 | User(id=3, email, email_notifications_enabled=True) | MESSAGE | "Hi" | "Hello" | None | Notification created; email failure; repo.add called | user exists with email; email enabled; email gateway exists but throws error; repo exists |
 
 ## 10 `participium.services.user_service.UserService.update_profile`
 
