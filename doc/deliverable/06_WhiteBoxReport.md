@@ -24,7 +24,7 @@
 
 ### Control Flow Graph
 
-- ![](../data/img/xxx.xxx)
+- ![resolve_recipient Control Flow Graph](../../data/img/wb_resolve_recipient.png)
 
 ### Atomic Conditions
 
