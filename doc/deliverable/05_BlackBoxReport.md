@@ -28,7 +28,15 @@ Prototype: `parse_date(value: str | None) -> datetime | None`
 
 | TC-ID | value | Expected | Fixture |
 | :---- | :---- | :------- | :------ |
-|  |  |  |  |
+| TC-01 | `None` | **`None` returned** | None required |
+| TC-02 | `""` (empty string) | **`None` returned** | None required |
+| TC-03 | `"2026-05-14"` (ISO date-only) | **`datetime(2026, 5, 14, 0, 0, 0)`** (naive) | None required |
+| TC-04 | `"2026-05-14T10:30:45"` (ISO datetime, no tz) | **`datetime(2026, 5, 14, 10, 30, 45)`** (naive) | None required |
+| TC-05 | `"2026-05-14T10:30:00+02:00"` (ISO datetime with tz) | **`datetime` with `utcoffset() == +02:00`** | None required |
+| TC-06 | `"14/05/2026"` (non-ISO format) | **`ValueError`** | None required |
+| TC-07 | `"2026-13-50"` (out-of-range month/day) | **`ValueError`** | None required |
+| TC-08 | `" "` (whitespace-only, truthy) | **`ValueError`** | None required |
+| TC-09 | `20260514` (non-string truthy input) | **`TypeError`** | None required |
 
 ## 3 `participium.core.status_flow.ensure_transition_allowed`
 
@@ -81,7 +89,16 @@ Prototype: `list_public_reports(category_id: int | None = None, status: ReportSt
 
 | TC-ID | category_id | status | date_from | date_to | sort | Expected | Fixture |
 | :---- | :---------- | :----- | :-------- | :------ | :--- | :------- | :------ |
-|  |  |  |  |  |  |  |  |
+| TC-01 | `None` | `None` | `None` | `None` | `"desc"` (default) | Repository called with `public_only=True` and all filters `None`, `sort="desc"`; result list returned unchanged | mocked `report_repository` returning a non-empty list |
+| TC-02 | `7` | `None` | `None` | `None` | `"desc"` | Repository called with `category_id=7`, other filters unchanged | mocked `report_repository` returning `[]` |
+| TC-03 | `None` | `ReportStatus.RESOLVED` | `None` | `None` | `"desc"` | Repository called with `status=ReportStatus.RESOLVED` (forwarded as-is) | mocked `report_repository` returning `[]` |
+| TC-04 | `None` | `None` | `datetime(2026, 1, 1)` | `None` | `"desc"` | Repository called with the given `date_from` | mocked `report_repository` returning `[]` |
+| TC-05 | `None` | `None` | `None` | `datetime(2026, 12, 31, 23, 59, 59)` | `"desc"` | Repository called with the given `date_to` | mocked `report_repository` returning `[]` |
+| TC-06 | `None` | `None` | `None` | `None` | `"asc"` | Repository called with `sort="asc"` | mocked `report_repository` returning `[]` |
+| TC-07 | `3` | `ReportStatus.IN_PROGRESS` | `datetime(2026, 1, 1)` | `datetime(2026, 6, 30)` | `"asc"` | Repository called with **all** filters forwarded together | mocked `report_repository` returning `[]` |
+| TC-08 | `99` | `None` | `None` | `None` | `"desc"` | Service returns `[]` unchanged | mocked `report_repository` returning `[]` |
+| TC-09 | `None` | `None` | `None` | `None` | `"desc"` | Service returns the repository list verbatim (same object, same length) | mocked `report_repository` returning a 3-element list |
+| TC-10 | `1` | `ReportStatus.ASSIGNED` | `None` | `None` | `"desc"` | Repository call kwargs include `public_only=True` regardless of other inputs | mocked `report_repository` returning `[]` |
 
 
 ## 7 `participium.services.messaging_service.MessagingService.send_message`
