@@ -28,19 +28,125 @@
 
 ### Atomic Conditions
 
+| ID | Atomic Condition |
+|---|---|
+| A | `sender.role` is not in {Role.ADMIN, Role.OPERATOR} |
+| B | `message` is not in reversed(messages) (loop condition) |
+| C | `message.sender` is None |
+| D | `message.sender.role` is not in {Role.ADMIN, Role.OPERATOR} |
+| E | `status_event` is not in reversed(report.status_history) (loop condition) |
+| F | `status_event.changed_by` is None |
+| G | `status_event.changed_by.role` is not in {Role.ADMIN, Role.OPERATOR} |
+
 ### Structural Lower Bound
+
+The minimum number of test cases needed to cover all distinct outputs:
+
+| ID | Output                    |
+| -- | ------------------------- |
+| 1  | `report.reporter`         |
+| 2  | `message.sender`          |
+| 3  | `status_event.changed_by` |
+| 4  | `None`                    |
 
 ### Node Coverage
 
+All nodes must be visited at least once.
+
+| Node | Description | Covered by |
+|------|-------------|------------|
+| N1 | `if sender.role in {Role.ADMIN, Role.OPERATOR}` | all TC |
+| N2 | `return report.reporter` | TC-01 |
+| N3 | `messages = self.message_repository.list_for_report(report.id)` | TC-02..TC-08 |
+| N4 | `for message in reversed(messages)` | TC-02..TC-08 |
+| N5 | `if message.sender and message.sender.role in {Role.ADMIN, Role.OPERATOR}` | TC-02..TC-08 |
+| N6 | `return message.sender` | TC-02, TC-03, TC-04 |
+| N7 | `for status_event in reversed(report.status_history)` | TC-05..TC-08 |
+| N8 | `if status_event.changed_by and status_event.changed_by.role in {Role.ADMIN, Role.OPERATOR}` | TC-05..TC-08 |
+| N9 | `return status_event.changed_by` | TC-05, TC-06, TC-07 |
+| N10 | `return None` | TC-08 |
+
+**Node coverage = 100% with TC-01..TC-08**
+
 ### Edge Coverage
+
+All edges must be traversed at least once.
+
+| Edge | From | To | Covered by |
+|------|------|-----|------------|
+| e0 | N1 | N2 | TC-01 |
+| e1 | N1 | N3 | TC-02..TC-08 |
+| e2 | N3 | N4 | TC-02..TC-08 |
+| e3 | N4 | N5 | TC-02..TC-08 |
+| e4 | N5 | N6 | TC-02, TC-03, TC-04 |
+| e5 | N5 | N4 | TC-03, TC-04 |
+| e6 | N4 | N7 | TC-05..TC-08 |
+| e7 | N7 | N8 | TC-05..TC-08 |
+| e8 | N8 | N9 | TC-05, TC-06, TC-07 |
+| e9 | N8 | N7 | TC-06, TC-07 |
+| e10 | N7 | N10 | TC-08 |
+
+**Edge coverage = 100% with TC-01..TC-08**
 
 ### Condition Coverage
 
+| Condition | True | False |
+|-----------|------|-------|
+| A | TC-02..TC-08 | TC-01 |
+| B | TC-05, TC-08 | TC-02..TC-07 |
+| C | TC-03, TC-04 | TC-02 |
+| D | TC-04 | TC-02 |
+| E | TC-08 | TC-05..TC-07 |
+| F | TC-06, TC-07 | TC-05 |
+| G | TC-07 | TC-05 |
+
+**Condition coverage = 100% with TC-01..TC-08**
+
 ### Loop Coverage
+
+#### Loop 1: `messages`
+
+| Case | Description | Covered by |
+|---|---|---|
+| 0 iterations | no messages present | TC-05, TC-08 |
+| 1 iteration | exactly one message | TC-02 |
+| 2+ iterations | multiple messages checked | TC-03, TC-04 |
+
+#### Loop 2: `status_history`
+
+| Case | Description | Covered by |
+|---|---|---|
+| 0 iterations | no status history present | TC-02..TC-04, TC-08 |
+| 1 iteration | exactly one status event | TC-05 |
+| 2+ iterations | multiple status events checked | TC-06, TC-07 |
+
+**Loop coverage = 100% with TC-01..TC-08**
 
 ### Path Coverage
 
+| Path ID | Description | Covered by |
+|---|---|---|
+| P-01 | sender.role in {ADMIN, OPERATOR} returns report.reporter immediately | TC-01 |
+| P-02 | enter message loop, first message satisfies full condition (message.sender exists and role is valid), return message.sender | TC-02 |
+| P-03 | message loop, first check fails (message.sender is None), later message satisfies full condition, return message.sender | TC-03 |
+| P-04 | message loop, first fails (message.sender is None), second fails (invalid role), later message satisfies full condition, return message.sender | TC-04 |
+| P-05 | no valid message sender, enter status loop, first changed_by satisfies full condition, return status_event.changed_by | TC-05 |
+| P-06 | status loop, first check fails (changed_by is None), later satisfies full condition, return status_event.changed_by | TC-06 |
+| P-07 | status loop, first fails (changed_by is None), second fails (invalid role), later satisfies full condition, return status_event.changed_by | TC-07 |
+| P-08 | no valid sender in messages or status history, return None | TC-08 |
+
 ### Minimal Suite Test
+
+| TC-ID | Description | Example |
+|---|---|---|
+| TC-01 | sender role is ADMIN or OPERATOR, recipient resolved immediately as report reporter | `_resolve_recipient(report, admin_user)` where `admin_user.role = ADMIN` and `report.reporter = citizen_user` |
+| TC-02 | first message contains valid sender with ADMIN/OPERATOR role | `_resolve_recipient(report, citizen_user)` where `messages = [Message(sender=admin_user)]` |
+| TC-03 | first message fails because sender is None, later message has valid ADMIN/OPERATOR sender | `_resolve_recipient(report, citizen_user)` where `messages = [Message(sender=admin_user), Message(sender=None)]` |
+| TC-04 | first message fails because sender is None, second fails because role is invalid, third message has valid ADMIN/OPERATOR sender | `_resolve_recipient(report, citizen_user)` where `messages = [Message(sender=admin_user), Message(sender=other_citizen), Message(sender=None)]` |
+| TC-05 | no valid message sender, first status event contains valid ADMIN/OPERATOR changed_by | `_resolve_recipient(report, citizen_user)` where `messages=[]` and `status_history=[Status(changed_by=operator_user)]` |
+| TC-06 | no valid message sender, first status event fails because changed_by is None, later status event is valid | `_resolve_recipient(report, citizen_user)` where `status_history=[Status(changed_by=admin_user), Status(changed_by=None)]` |
+| TC-07 | no valid message sender, first status event fails because changed_by is None, second fails because role invalid, third is valid | `_resolve_recipient(report, citizen_user)` where `status_history=[Status(changed_by=admin_user), Status(changed_by=other_citizen), Status(changed_by=None)]` |
+| TC-08 | all message checks fail and all status checks fail, recipient cannot be resolved | `_resolve_recipient(report, citizen_user)` where `messages=[]` and `status_history=[]` |
 
 ## 3 `NotificationService.notify_status_change`
 
