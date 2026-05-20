@@ -67,9 +67,32 @@ Suggested test file: `test_create_report.py`
 
 Prototype: `create_report(reporter: User, category_id: int | str | None, title: str | None, description: str | None, latitude: float | str | None, longitude: float | str | None, photos: list[FileStorage], is_anonymous: bool = False) -> Report`
 
-| TC-ID | reporter | category_id | title | description | latitude | longitude | photos | is_anonymous | Expected | Fixture |
-| :---- | :------- | :---------- | :---- | :---------- | :------- | :-------- | :----- | :----------- | :------- | :------ |
-|  |  |  |  |  |  |  |  |  |  |  |
+| TC-ID | reporter | category_id          | title       | description       | latitude             | longitude             | photos                | is_anonymous | Expected        | Fixture                                                                                |
+| :---- | :------- | :------------------- | :---------- | :---------------- | :------------------- | :-------------------- | :-------------------- | :----------- | :-------------- | :------------------------------------------------------------------------------------- |
+| TC-01 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | Report          | session, report_repository, storage_service, notification_service, category_repository |
+| TC-02 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | 3 valid and 1 invalid | false        | Report          | session, report_repository, storage_service, notification_service, category_repository |
+| TC-03 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | true         | Report          | session, report_repository, storage_service, notification_service, category_repository |
+| TC-04 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | 3 valid and 1 invalid | true         | Report          | session, report_repository, storage_service, notification_service, category_repository |
+| TC-05 | User     | **non-existent int** | valid title | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-06 | User     | **inactive int**     | valid title | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-07 | User     | **None**             | valid title | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-08 | User     | valid int            | **None**    | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-09 | User     | valid int            | **""**      | valid description | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-10 | User     | valid int            | valid title | **None**          | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-11 | User     | valid int            | valid title | **""**            | valid latitude       | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-12 | User     | valid int            | valid title | valid description | **invalid latitude** | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-13 | User     | valid int            | valid title | valid description | **""**               | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-14 | User     | valid int            | valid title | valid description | **None**             | valid longitude       | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-15 | User     | valid int            | valid title | valid description | valid latitude       | **invalid longitude** | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-16 | User     | valid int            | valid title | valid description | valid latitude       | **""**                | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-17 | User     | valid int            | valid title | valid description | valid latitude       | **None**              | 1 valid and 1 invalid | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-18 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **empty list**        | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-19 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **1 invalid**         | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-20 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **4 valid**           | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-21 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **None**              | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+
+
+
 
 ## 5 `participium.services.report_service.ReportService.update_status`
 
@@ -77,9 +100,19 @@ Suggested test file: `test_update_status.py`
 
 Prototype: `update_status(report_id: int, operator: User, next_status_value: str, note: str | None = None) -> Report`
 
-| TC-ID | report_id | operator | next_status_value | note | Expected | Fixture |
-| :---- | :-------- | :------- | :---------------- | :--- | :------- | :------ |
-|  |  |  |  |  |  |  |
+| TC-ID | report_id               | operator                                | next_status_value | note         | Expected           | Fixture                                                                                                    |
+| :---- | :---------------------- | :-------------------------------------- | :---------------- | :----------- | :----------------- | :--------------------------------------------------------------------------------------------------------- |
+| TC-01 | existing report         | ADMIN                                   | valid             | "valid note" | Report             | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-02 | existing report         | OPERATOR with correct category_id       | valid             | "valid note" | Report             | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-03 | existing report         | ADMIN                                   | valid             | None         | Report             | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-04 | existing report         | OPERATOR with correct category_id       | valid             | None         | Report             | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-05 | **non-existing report** | ADMIN                                   | valid             | "valid note" | NotFoundError      | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-06 | **None**                | ADMIN                                   | valid             | "valid note" | NotFoundError      | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-07 | existing report         | **OPERATOR with incorrect category_id** | valid             | "valid note" | AuthorizationError | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-08 | existing report         | **other role**                          | valid             | "valid note" | AuthorizationError | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-09 | existing report         | ADMIN                                   | **invalid**       | "valid note" | ValidationError    | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-10 | existing report         | ADMIN                                   | **non-existing**  | "valid note" | ValidationError    | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
+| TC-11 | existing report         | ADMIN                                   | **"Rejection"**   | **None**     | ValidationError    | mocked `session`, `report_repository`, `category_repository`, `storage_service` and `notification_service` |
 
 ## 6 `participium.services.report_service.ReportService.list_public_reports`
 
