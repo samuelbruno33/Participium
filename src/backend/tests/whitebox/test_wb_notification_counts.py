@@ -6,6 +6,7 @@ from participium.services.notification_service import NotificationService
 
 pytestmark = pytest.mark.whitebox
 
+
 def test_count_unread_zero_iterations():
     """
     Target Path: N1 -> N2 -> N6
@@ -42,10 +43,12 @@ def test_count_unread_report_id_none():
     service = NotificationService(notification_repository=mock_notification_repo)
 
     # Execution
-    result = service.count_unread_message_notifications_by_report(user_id=2)
+    user_id = 2
+    result = service.count_unread_message_notifications_by_report(user_id=user_id)
 
     # Assertions
     assert result == {}
+    mock_notification_repo.list_unread_message_notifications.assert_called_once_with(user_id=user_id)
 
 
 def test_count_unread_valid_multiple_iterations():
@@ -71,8 +74,9 @@ def test_count_unread_valid_multiple_iterations():
     service = NotificationService(notification_repository=mock_notification_repo)
 
     # Execution
-    result = service.count_unread_message_notifications_by_report(user_id=3)
+    user_id = 3
+    result = service.count_unread_message_notifications_by_report(user_id=user_id)
 
     # Assertions
     assert result == {100: 2, 200: 1}
-    mock_notification_repo.list_unread_message_notifications.assert_called_once_with(user_id=3)
+    mock_notification_repo.list_unread_message_notifications.assert_called_once_with(user_id=user_id)

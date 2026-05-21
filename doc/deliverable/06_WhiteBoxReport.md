@@ -175,23 +175,107 @@ All edges must be traversed at least once.
 
 ### Control Flow Graph
 
-- ![](../data/img/xxx.xxx)
+- ![count_unread_message_notifications_by_report Control Flow Graph](../../data/img/wb_CFG_count_unread.png)
 
 ### Atomic Conditions
 
+| ID | Atomic Condition |
+|---|---|
+| A | The `notifications` iterable has at least one more element (loop entry guard) |
+| B | `notification.report_id is None` |
+
 ### Structural Lower Bound
+
+The minimum number of test cases needed to cover all distinct outputs:
+
+| ID | Output |
+|---|---|
+| 1 | Returns `{}` — list is empty (zero iterations) |
+| 2 | Returns `{}` — list is non-empty but every `report_id` is `None` |
+| 3 | Returns `{report_id: count, …}` — at least one valid `report_id` present |
+
+---
 
 ### Node Coverage
 
+All nodes must be visited at least once.
+
+| Node | Description | Covered by |
+|---|---|---|
+| N1 | Fetch notifications from repository; initialize `counts = {}` | all TC |
+| N2 | For-loop condition: next item available in `notifications`? | all TC |
+| N3 | Bind `notification` to the next element | TC-02, TC-03 |
+| N4 | `if notification.report_id is None` | TC-02, TC-03 |
+| N5 | `counts[notification.report_id] = counts.get(notification.report_id, 0) + 1` | TC-03 |
+| N6 | `return counts` | all TC |
+
+**Node coverage = 100% with TC-01, TC-02, TC-03**
+
+---
+
 ### Edge Coverage
+
+All edges must be traversed at least once.
+
+| Edge | From | To | Covered by |
+|---|---|---|---|
+| e1 | N1 | N2 | all TC |
+| e2 | N2 | N6 | all TC |
+| e3 | N2 | N3 | TC-02, TC-03 |
+| e4 | N3 | N4 | TC-02, TC-03 |
+| e5 | N4 | N2 | TC-02 |
+| e6 | N4 | N5 | TC-03 |
+| e7 | N5 | N2 | TC-03 |
+
+**Edge coverage = 100% with TC-01, TC-02, TC-03**
+
+---
 
 ### Condition Coverage
 
+| Condition | True | False |
+|---|---|---|
+| A: loop entered (next element exists) | TC-02, TC-03 | TC-01 |
+| B: `notification.report_id is None` | TC-02 | TC-03 |
+
+**Condition coverage = 100% with TC-01, TC-02, TC-03**
+
+---
+
 ### Loop Coverage
+
+| Case | Description | Covered by |
+|---|---|---|
+| 0 iterations | Empty notification list; loop body never entered | TC-01 |
+| 1 iteration | Exactly one notification with `report_id = None`; loop body entered once | TC-02 |
+| 2+ iterations | Three notifications across two distinct `report_id` values; loop body executed multiple times | TC-03 |
+
+**Loop coverage = 100% with TC-01, TC-02, TC-03**
+
+---
 
 ### Path Coverage
 
+| Path ID | Description | Covered by |
+|---|---|---|
+| P-01 | Zero iterations; empty list, `counts = {}` returned immediately | TC-01 |
+| P-02 | One iteration; `report_id` is `None`, entry skipped via `continue` | TC-02 |
+| P-03 | One iteration; valid `report_id`, count incremented | subsumed by TC-03 |
+| P-04 | Multiple iterations; all valid `report_id`s, counts accumulated across reports | TC-03 |
+
+**Full path coverage is not feasible** due to the unbounded loop. TC-01, TC-02, TC-03 achieve 100% edge and condition coverage while exercising all structurally distinct loop behaviors.
+
+---
+
 ### Minimal Suite Test
+
+| TC-ID | Description | Example |
+|---|---|---|
+| TC-01 | Empty notification list, loop never entered | `count_unread_message_notifications_by_report(user_id=1)` where repository returns `[]` |
+| TC-02 | One notification with `report_id = None`, skipped | `count_unread_message_notifications_by_report(user_id=2)` where repository returns one notification with `report_id=None` |
+| TC-03 | Multiple notifications with valid `report_id`s, counts aggregated | `count_unread_message_notifications_by_report(user_id=3)` where repository returns `[notif(100), notif(100), notif(200)]` |
+
+**Minimal suite = 3 TC**
 
 
 
