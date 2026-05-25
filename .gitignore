@@ -33,3 +33,4 @@ priv/
 
 # Preserved local fork ignore rules
 .obsidian
+.vscode
