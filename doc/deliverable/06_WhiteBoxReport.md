@@ -318,23 +318,122 @@ All edges must be traversed at least once.
 
 ### Control Flow Graph
 
-- ![](../data/img/xxx.xxx)
+- ![notify_status_change Control Flow Graph](../../data/img/wb_notify_status_change.png)
 
 ### Atomic Conditions
 
+| ID | Atomic Condition |
+|---|---|
+| A | The `recipients` iterable has at least one more element (loop entry guard) |
+| B | `recipient is None` |
+| C | `recipient.id in seen` |
+
+Note: `B or C` short-circuits — when `B` is True, `C` is not evaluated.
+
 ### Structural Lower Bound
+
+The minimum number of test cases needed to cover all distinct outputs:
+
+| ID | Output |
+|---|---|
+| 1 | Returns `None` — `recipients` is empty, zero calls to `create_notification` |
+| 2 | Returns `None` — `recipients` is non-empty but every element is filtered out (`None` or duplicate id), zero calls to `create_notification` |
+| 3 | Returns `None` — at least one call to `create_notification` for a unique non-`None` recipient |
+
+---
 
 ### Node Coverage
 
+All nodes must be visited at least once.
+
+| Node | Description | Covered by |
+|---|---|---|
+| N1 | `seen = set()` | all TC |
+| N2 | For-loop condition: next item available in `recipients`? | all TC |
+| N3 | Bind `recipient` to the next element | TC-02..TC-06 |
+| N4 | `if recipient is None or recipient.id in seen` | TC-02..TC-06 |
+| N5 | `continue` | TC-02, TC-04, TC-06 |
+| N6 | `seen.add(recipient.id)` | TC-03, TC-04, TC-05, TC-06 |
+| N7 | `self.create_notification(recipient, NotificationType.STATUS_CHANGE, …, report=report)` | TC-03, TC-04, TC-05, TC-06 |
+| N8 | Implicit return (end of function) | all TC |
+
+**Node coverage = 100% with TC-01, TC-02, TC-03, TC-04**
+
+---
+
 ### Edge Coverage
+
+All edges must be traversed at least once.
+
+| Edge | From | To | Covered by |
+|---|---|---|---|
+| e1 | N1 | N2 | all TC |
+| e2 | N2 | N8 | all TC |
+| e3 | N2 | N3 | TC-02..TC-06 |
+| e4 | N3 | N4 | TC-02..TC-06 |
+| e5 | N4 | N5 (condition true) | TC-02, TC-04, TC-06 |
+| e6 | N5 | N2 (continue) | TC-02, TC-04, TC-06 |
+| e7 | N4 | N6 (condition false) | TC-03, TC-04, TC-05, TC-06 |
+| e8 | N6 | N7 | TC-03, TC-04, TC-05, TC-06 |
+| e9 | N7 | N2 (next iteration) | TC-03, TC-04, TC-05, TC-06 |
+
+**Edge coverage = 100% with TC-01, TC-02, TC-03, TC-04**
+
+---
 
 ### Condition Coverage
 
+| Condition | True | False |
+|---|---|---|
+| A: loop entered (next element exists) | TC-02..TC-06 | TC-01 |
+| B: `recipient is None` | TC-02, TC-06 | TC-03, TC-04, TC-05 |
+| C: `recipient.id in seen` | TC-04, TC-06 | TC-03, TC-05 |
+
+To exercise `C = True` the iteration must reach `C` with `B = False` and an id already inserted into `seen`, which requires at least one prior successful iteration with the same id (TC-04, TC-06).
+
+**Condition coverage = 100% with TC-01, TC-02, TC-03, TC-04**
+
+---
+
 ### Loop Coverage
+
+| Case | Description | Covered by |
+|---|---|---|
+| 0 iterations | Empty `recipients`; loop body never entered | TC-01 |
+| 1 iteration | Single recipient (`None` or valid) | TC-02, TC-03 |
+| 2+ iterations | Multiple recipients; loop body executed more than once | TC-04, TC-05, TC-06 |
+
+**Loop coverage = 100% with TC-01, TC-02, TC-03, TC-04**
+
+---
 
 ### Path Coverage
 
+| Path ID | Description | Covered by |
+|---|---|---|
+| P-01 | 0 iterations; return immediately | TC-01 |
+| P-02 | 1 iteration; `recipient is None`, skipped via `continue` | TC-02 |
+| P-03 | 1 iteration; valid recipient with new id, notification created | TC-03 |
+| P-04 | 2 iterations; first creates a notification, second is a duplicate id and is skipped | TC-04 |
+| P-05 | 2 iterations; both recipients are valid and distinct, two notifications created | TC-05 |
+| P-06 | 4 iterations; mix of `None`, valid, duplicate, `None` — only the first valid recipient creates a notification | TC-06 |
+
+**Full path coverage is not feasible** because the loop is unbounded and the combinatorial mix of `None`, duplicates, and distinct recipients is infinite. TC-01..TC-04 achieve 100% node, edge, condition, and loop coverage; TC-05 and TC-06 add coverage of multi-success and mixed-skip paths.
+
+---
+
 ### Minimal Suite Test
+
+| TC-ID | Description | Example |
+|---|---|---|
+| TC-01 | Empty recipients list, loop never entered | `notify_status_change(recipients=[], report=Report(id=10), body="status update")` |
+| TC-02 | Single `None` recipient, skipped via `continue` | `notify_status_change(recipients=[None], report=Report(id=10), body="status update")` |
+| TC-03 | Single valid recipient, one notification created | `notify_status_change(recipients=[User(id=1)], report=Report(id=42), body="status update")` |
+| TC-04 | Two recipients with the same `id`, first creates a notification, second is skipped | `notify_status_change(recipients=[User(id=1), User(id=1)], report=Report(id=10), body="status update")` |
+| TC-05 | Two valid distinct recipients, two notifications created | `notify_status_change(recipients=[User(id=1), User(id=2)], report=Report(id=10), body="status update")` |
+| TC-06 | Mixed list (`None`, valid, duplicate, `None`), only the first valid creates a notification | `notify_status_change(recipients=[None, User(id=1), User(id=1), None], report=Report(id=10), body="status update")` |
+
+**Minimal suite = 4 TC** (TC-01..TC-04 are sufficient for 100% node, edge, condition, and loop coverage; TC-05 and TC-06 enrich path coverage)
 
 
 ## 4 `NotificationService.count_unread_message_notifications_by_report`
