@@ -5,7 +5,10 @@ import pytest
 from flask.testing import FlaskClient
 
 from participium import create_app
-from participium.database import close_connection
+from participium.core.security import hash_password
+from participium.database import close_connection, get_session
+from participium.models.enums import Role
+from participium.models.user import User
 
 pytestmark = pytest.mark.e2e
 
@@ -49,6 +52,24 @@ def _register_and_verify(client: FlaskClient, *, username: str, email: str, pass
     resp, body = _register(client, username=username, email=email, password=password)
     assert resp.status_code == 201, f"Registration failed: {body}"
     _verify(client, body["verification_url"])
+    return {"username": username, "email": email, "password": password}
+
+
+def _create_admin_user(*, username: str, email: str, password: str = "Password1!") -> dict:
+    session = get_session()
+    admin = User(
+        username=username,
+        first_name=username.split(".")[0].capitalize(),
+        last_name=username.split(".")[-1].capitalize(),
+        email=email.lower(),
+        password_hash=hash_password(password),
+        role=Role.ADMIN,
+        is_active=True,
+        is_email_verified=True,
+        email_notifications_enabled=True,
+    )
+    session.add(admin)
+    session.commit()
     return {"username": username, "email": email, "password": password}
 
 
@@ -193,5 +214,76 @@ class TestAuthFlows:
         assert "username" in user_data
         assert "email" in user_data
         assert user_data["username"] == "fields.check"
+
+
+    def test_protected_endpoint_without_login(self, client):
+        resp = client.get("/api/v1/users/me")
+
+        assert resp.status_code == 401
+
+    def test_admin_endpoint_as_citizen(self, client):
+        _register_and_verify(client, username="citizen.user", email="citizen.user@example.com")
+        _login(client, "citizen.user")
+
+        resp = client.get("/api/v1/admin/users")
+
+        assert resp.status_code == 403
+
+
+class TestAdminUserManagement:
+    def test_admin_can_access_admin_endpoint(self, client):
+        creds = _create_admin_user(
+            username="admin.user",
+            email="admin@example.com",
+            password="Admin123!"
+        )
+
+        _login(client, creds["email"], password="Admin123!")
+
+        resp = client.get("/api/v1/admin/users")
+
+        assert resp.status_code == 200
+
+
+    def test_create_admin_user(self,client):
+        creds = _create_admin_user(
+            username="admin.user",
+            email="admin@example.com",
+            password="Admin123!"
+        )
+        _login(client, creds["email"], password="Admin123!")
+        create_resp = client.post("/api/v1/admin/users", json={
+            "username": "user.to.update",
+            "first_name": "Before",
+            "last_name": "Update",
+            "email": "user.to.update@example.com",
+            "password": "Password1!",
+            "role": "citizen",
+        })
+        assert create_resp.status_code == 201
+        user_id = create_resp.get_json()["id"]
+
+        resp = client.put(f"/api/v1/admin/users/{user_id}", json={"first_name": "After"})
+
+        assert resp.status_code == 200
+        assert resp.get_json()["first_name"] == "After"
+
+
+
+
+    def test_admin_update_nonexistent_user(self,client):
+        creds = _create_admin_user(
+            username="admin.user",
+            email="admin@example.com",
+            password="Admin123!"
+        )
+
+        _login(client, creds["email"], password="Admin123!")
+
+        resp = client.put("/api/v1/admin/users/999", json={"username": "nonexistent.user"})
+        assert resp.status_code == 404
+
+
+
 
 

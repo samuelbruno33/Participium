@@ -56,6 +56,16 @@ class TestListAndGetUsers:
         with pytest.raises(NotFoundError, match="User not found"):
             service.get_user(999)
 
+    def test_list_users(self, user_bundle):
+        service = user_bundle["service"]
+        user_repository = user_bundle["user_repository"]
+        expected_users = [_user(user_id=1), _user(user_id=2)]
+        user_repository.list_all.return_value = expected_users
+
+        result = service.list_users()
+
+        assert result == expected_users
+
 
 class TestCreateUser:
 
@@ -275,6 +285,25 @@ class TestUpdateUser:
 
         assert result.role == Role.OPERATOR
         assert result.category_id == 5
+
+
+
+    def test_update_user_email_notifications(self, user_bundle):
+        
+        service = user_bundle["service"]
+        user_repository = user_bundle["user_repository"]
+
+        user = _user(email_notifications_enabled=False)
+
+        user_repository.get_by_id.return_value = user
+
+        payload = {
+            "email_notifications_enabled": True
+        }
+
+        result = service.update_user(1, payload)
+
+        assert result.email_notifications_enabled is True
 
 
 class TestDeleteAccount:
