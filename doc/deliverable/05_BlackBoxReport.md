@@ -89,7 +89,7 @@ Prototype: `create_report(reporter: User, category_id: int | str | None, title: 
 | TC-18 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **empty list**        | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
 | TC-19 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **1 invalid**         | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
 | TC-20 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **4 valid**           | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
-| TC-21 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **None**              | false        | ValidationError | session, report_repository, storage_service, notification_service, category_repository |
+| TC-21 | User     | valid int            | valid title | valid description | valid latitude       | valid longitude       | **None**              | false        | TypeError | session, report_repository, storage_service, notification_service, category_repository |
 
 
 

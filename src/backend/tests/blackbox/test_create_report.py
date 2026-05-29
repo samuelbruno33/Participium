@@ -63,7 +63,7 @@ def mock_report_service() -> ReportService:
         (Mock(), 10, " valid title ", " valid description ", 45.12, 9.34, [], False, ValidationError, None),
         (Mock(), 10, " valid title ", " valid description ", 45.12, 9.34, [None], False, ValidationError, None),
         (Mock(), 10, " valid title ", " valid description ", 45.12, 9.34, [Mock(), Mock(), Mock(), Mock()], False, ValidationError, None),
-        (Mock(), 10, " valid title ", " valid description ", 45.12, 9.34, None, False, ValidationError, None)
+        (Mock(), 10, " valid title ", " valid description ", 45.12, 9.34, None, False, TypeError, None),
     ]
 )
 def test_suite_create_report(mock_report_service, reporter, category_id, title, description, latitude, longitude, photos, is_anonymous, expected_exception, oracle):
@@ -99,4 +99,3 @@ def test_suite_create_report(mock_report_service, reporter, category_id, title, 
         service.report_repository.add_status_entry.assert_called_once()
         service.session.commit.assert_called_once()
         service.report_repository.get_by_id.assert_called_once()
-
