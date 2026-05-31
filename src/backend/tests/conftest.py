@@ -9,6 +9,8 @@ from participium.models.enums import Role
 from participium.models.user import User
 from participium.models.category import Category
 from participium.models.token import EmailVerificationToken
+from participium.models.report import Report
+from participium.models.enums import Role, ReportStatus
 
 @pytest.fixture
 def db(monkeypatch: pytest.MonkeyPatch):
@@ -67,6 +69,30 @@ def create_token():
     def _create(*, user_id: int, token: str, expires_at: datetime, is_used: bool = False) -> EmailVerificationToken:
         return EmailVerificationToken(user_id=user_id, token=token, expires_at=expires_at, is_used=is_used)
     return _create
+
+def create_report(
+    *,
+    id: id = 10,
+    title: str = "valid_title",
+    description: str = "valid_description",
+    latitude: float = 42.12,
+    longitude: float = 9.34,
+    is_anonymous: bool = False,
+    status: ReportStatus = ReportStatus.PENDING_APPROVAL,
+    reporter_id: int | None = 10,
+    category_id: int = 10,
+):
+    return Report(
+        id = id,
+        title=title.strip(),
+        description=description.strip(),
+        latitude=latitude,
+        longitude=longitude,
+        is_anonymous=bool(is_anonymous),
+        status=ReportStatus.PENDING_APPROVAL,
+        reporter_id=reporter.id,
+        category_id=category_id
+    )
 
 def user(
     *,
