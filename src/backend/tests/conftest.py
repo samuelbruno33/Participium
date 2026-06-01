@@ -139,8 +139,8 @@ def create_report(
     is_anonymous: bool = False,
     status: ReportStatus = ReportStatus.PENDING_APPROVAL,
     rejection_reason: str | None = None,
-    reporter_id: int | None = 10,
-    category_id: int = 10,
+    reporter_id: int | None = None,
+    category_id: int = 11,
 ):
     return Report(
         id = id,
@@ -155,11 +155,10 @@ def create_report(
         category_id=category_id
     )
 
-
 def create_report_photo(
     *,
     id: int | None = None,
-    report_id: int = 10,
+    report_id: int = 12,
     file_path: str = "/home/user/pic/",
     original_filename: str = "photo_1.png",
     content_type: str | None = None,
@@ -175,11 +174,11 @@ def create_report_photo(
 def create_report_status_history(
     *,
     id: int | None = None,
-    report_id: int = 10,
+    report_id: int = 13,
     previous_status: ReportStatus | None = ReportStatus.IN_PROGRESS,
     new_status: ReportStatus = ReportStatus.RESOLVED,
     note: str | None = "ciao",
-    changed_by_id: str | None = 10,
+    changed_by_id: str | None = None,
     created_at: str = datetime.now(),
 ):
     return ReportStatusHistory(
@@ -195,8 +194,8 @@ def create_report_status_history(
 def create_report_follower(
     *,
     id: int | None = None,
-    report_id: int = 10,
-    user_id: int = 10,
+    report_id: int = 15,
+    user_id: int = 16,
     created_at: str = datetime.now(),
 ):
     return ReportFollower(

@@ -28,6 +28,8 @@ src/instance/
 src/backend/instance/
 src/backend/participium/static/uploads/
 *.db
+src/backend/file:test_messaging
+src/backend/file:test_public_browsing
 
 priv/
 
