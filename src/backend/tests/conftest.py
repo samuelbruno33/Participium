@@ -9,7 +9,7 @@ from participium.models.enums import Role
 from participium.models.user import User
 from participium.models.category import Category
 from participium.models.token import EmailVerificationToken
-from participium.models.report import Report
+from participium.models.report import Report, ReportPhoto, ReportStatusHistory, ReportFollower
 from participium.models.enums import Role, ReportStatus
 
 @pytest.fixture
@@ -70,30 +70,6 @@ def create_token():
         return EmailVerificationToken(user_id=user_id, token=token, expires_at=expires_at, is_used=is_used)
     return _create
 
-def create_report(
-    *,
-    id: id = 10,
-    title: str = "valid_title",
-    description: str = "valid_description",
-    latitude: float = 42.12,
-    longitude: float = 9.34,
-    is_anonymous: bool = False,
-    status: ReportStatus = ReportStatus.PENDING_APPROVAL,
-    reporter_id: int | None = 10,
-    category_id: int = 10,
-):
-    return Report(
-        id = id,
-        title=title.strip(),
-        description=description.strip(),
-        latitude=latitude,
-        longitude=longitude,
-        is_anonymous=bool(is_anonymous),
-        status=ReportStatus.PENDING_APPROVAL,
-        reporter_id=reporter.id,
-        category_id=category_id
-    )
-
 def user(
     *,
     user_id: int = 1,
@@ -142,8 +118,6 @@ def token(
     tok.user = user(user_id=user_id, is_email_verified=False)
     return tok
 
-
-
 @pytest.fixture
 def user_payload():
     return {
@@ -155,5 +129,79 @@ def user_payload():
         "role": "citizen",
     }
 
+def create_report(
+    *,
+    id: int | None = None,
+    title: str = "valid_title",
+    description: str = "valid_description",
+    latitude: float = 42.12,
+    longitude: float = 9.34,
+    is_anonymous: bool = False,
+    status: ReportStatus = ReportStatus.PENDING_APPROVAL,
+    rejection_reason: str | None = None,
+    reporter_id: int | None = 10,
+    category_id: int = 10,
+):
+    return Report(
+        id = id,
+        title=title.strip(),
+        description=description.strip(),
+        latitude=latitude,
+        longitude=longitude,
+        is_anonymous=bool(is_anonymous),
+        status=status,
+        rejection_reason = rejection_reason,
+        reporter_id=reporter_id,
+        category_id=category_id
+    )
 
 
+def create_report_photo(
+    *,
+    id: int | None = None,
+    report_id: int = 10,
+    file_path: str = "/home/user/pic/",
+    original_filename: str = "photo_1.png",
+    content_type: str | None = None,
+):
+    return ReportPhoto(
+        id = id,
+        report_id = report_id,
+        file_path = file_path,
+        original_filename = original_filename,
+        content_type = content_type
+    )
+
+def create_report_status_history(
+    *,
+    id: int | None = None,
+    report_id: int = 10,
+    previous_status: ReportStatus | None = ReportStatus.IN_PROGRESS,
+    new_status: ReportStatus = ReportStatus.RESOLVED,
+    note: str | None = "ciao",
+    changed_by_id: str | None = 10,
+    created_at: str = datetime.now(),
+):
+    return ReportStatusHistory(
+        id = id,
+        report_id = report_id,
+        previous_status = previous_status,
+        new_status = new_status,
+        note = note,
+        changed_by_id = changed_by_id,
+        created_at = created_at,
+    )
+
+def create_report_follower(
+    *,
+    id: int | None = None,
+    report_id: int = 10,
+    user_id: int = 10,
+    created_at: str = datetime.now(),
+):
+    return ReportFollower(
+        id = id,
+        report_id = report_id,
+        user_id = user_id,
+        created_at = created_at,
+    )
