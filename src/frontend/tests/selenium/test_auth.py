@@ -1,4 +1,4 @@
-# UC-01: Register account, UC-02: Login, UC-16: Logout.
+import os
 import uuid
 
 from selenium import webdriver
@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 
 BASE_URL = "http://localhost:5173"
+PROFILE_IMAGE = os.path.join(os.path.dirname(__file__), "profile_test_image.png")
 
 CITIZEN_EMAIL    = "citizen@example.com"
 CITIZEN_PASSWORD = "Citizen123!"
@@ -29,6 +30,25 @@ def driver():
 @pytest.fixture
 def wait(driver):
     return WebDriverWait(driver, 10)
+
+
+
+def login(driver, wait, email: str, password: str) -> None:
+    driver.get(f"{BASE_URL}/login")
+    wait.until(EC.presence_of_element_located((By.ID, "login-identifier")))
+    driver.find_element(By.ID, "login-identifier").clear()
+    driver.find_element(By.ID, "login-identifier").send_keys(email)
+    driver.find_element(By.ID, "login-password").clear()
+    pwd = wait.until(EC.element_to_be_clickable((By.ID, "login-password")))
+    pwd.click()
+    pwd.clear()
+
+    pwd.send_keys(password)
+    driver.find_element(By.ID, "login-submit").click()
+    wait.until(EC.url_changes(f"{BASE_URL}/login"))
+
+
+
 
 
 class TestRegister:
@@ -144,7 +164,7 @@ class TestRegister:
 
 
 
-
+#UC-15: Manage citizen profile
 class TestLogin:
 #Login with valid credentials
     def test_login_with_valid_credentials(self, driver, wait):
@@ -212,7 +232,7 @@ class TestLogin:
         assert error.is_displayed()
         assert "login" in driver.current_url
 
-
+#UC-16: Logout
 class TestLogout:
     def test_logout(self,wait, driver):
 
@@ -254,3 +274,77 @@ class TestLogout:
         wait.until(lambda d: "/dashboard" not in d.current_url or "login" in d.current_url)
         assert "/dashboard" not in driver.current_url or "login" in driver.current_url
         
+# UC-15: Manage citizen profile
+class TestManageCitizenProfile:
+
+    def test_citizen_can_update_username(self, driver, wait):
+        login(driver, wait, "citizen@example.com", "Citizen123!")
+
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+
+        username_input = driver.find_element(By.ID, "profile-username")
+        username_input.clear()
+        username_input.send_keys("citizen.updated")
+        driver.find_element(By.ID, "profile-save").click()
+
+        success = wait.until(EC.presence_of_element_located((By.ID, "profile-success")))
+        assert success.is_displayed()
+
+        # restore original username
+        username_input = driver.find_element(By.ID, "profile-username")
+        username_input.clear()
+        username_input.send_keys("citizen")
+        driver.find_element(By.ID, "profile-save").click()
+        wait.until(EC.presence_of_element_located((By.ID, "profile-success")))
+
+    def test_citizen_can_toggle_email_notifications(self, driver, wait):
+        login(driver, wait, "citizen@example.com", "Citizen123!")
+
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+
+        toggle = driver.find_element(By.ID, "profile-email-notifications")
+        initial_state = toggle.is_selected()
+        toggle.click()
+        driver.find_element(By.ID, "profile-save").click()
+
+        success = wait.until(EC.presence_of_element_located((By.ID, "profile-success")))
+        assert success.is_displayed()
+
+        # verify state changed
+        driver.get(f"{BASE_URL}/Dashboard")
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+        toggle = driver.find_element(By.ID, "profile-email-notifications")
+        assert toggle.is_selected() != initial_state
+
+
+    def test_citizen_cancel_leaves_profile_unchanged(self, driver, wait):
+        login(driver, wait, "citizen@example.com", "Citizen123!")
+
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+
+        original_username = driver.find_element(By.ID, "profile-username").get_attribute("value")
+
+        username_input = driver.find_element(By.ID, "profile-username")
+        username_input.clear()
+        username_input.send_keys("changed.but.not.saved")
+
+        driver.get(f"{BASE_URL}/Dashboard")
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+
+        current_value = driver.find_element(By.ID, "profile-username").get_attribute("value")
+        assert current_value == original_username
+
+    def test_profile_picture_submission(self, driver, wait):
+        login(driver, wait, "citizen@example.com", "Citizen123!")
+
+        wait.until(EC.presence_of_element_located((By.ID, "profile-section")))
+
+        upload_input = driver.find_element(By.ID, "profile-picture")
+        upload_input.send_keys(PROFILE_IMAGE)
+
+        driver.find_element(By.ID, "profile-save").click()
+
+        success = wait.until(EC.presence_of_element_located((By.ID, "profile-success"))) 
+        assert success.is_displayed()
+
+# I tried to submit an invalid file but the frontend validates it.
