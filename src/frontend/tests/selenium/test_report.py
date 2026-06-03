@@ -1,8 +1,6 @@
 # UC-03 Submit report
 # UC-07 Follow report
 # UC-10 Manage report
-# UC-11 Send Message to user
-# UC-12 Reply to operator message
 
 
 import os
@@ -214,5 +212,3 @@ class TestSubmitReport:
 
         driver.find_element(By.ID, "new-report-submit").click()
         assert len(driver.find_elements(By.ID, "new-report-title")) > 0
-
-        input("Press Enter to close the browser...")  # Keeps the script running
