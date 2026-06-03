@@ -1,7 +1,6 @@
-from __future__ import annotations
-
-# UC-03 Submit report
 # UC-07 Follow report
+
+from __future__ import annotations
 
 import time
 import requests
