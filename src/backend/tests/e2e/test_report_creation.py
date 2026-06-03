@@ -123,7 +123,7 @@ def _login(client, email, password):
     return resp
 
 class TestCreateReport:
-    def test_create_report_success(self, db_session, client, messaging_setup):
+    def test_e2e_create_report_success(self, db_session, client, messaging_setup):
         response = _login(client, *messaging_setup["citizen_creds"])
         assert response.status_code == 200
 
@@ -141,7 +141,7 @@ class TestCreateReport:
         assert response.json["title"] == payload["title"]
         assert response.json["description"] == payload["description"]
 
-    def test_create_report_inactive_category(self, db_session, client, messaging_setup):
+    def test_e2e_create_report_inactive_category(self, db_session, client, messaging_setup):
         response = _login(client, *messaging_setup["citizen_creds"])
         assert response.status_code == 200
 
@@ -158,7 +158,7 @@ class TestCreateReport:
         assert response.status_code == 400
         assert response.json["error"] == "A valid active category is required."
 
-    def test_create_report_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_create_report_auth_required(self, db_session, client, messaging_setup):
         payload = {
             "title" : "the title",
             "description" : "a description",
@@ -172,7 +172,7 @@ class TestCreateReport:
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
 
-    def test_create_report_citizen_required(self, db_session, client, messaging_setup):
+    def test_e2e_create_report_citizen_required(self, db_session, client, messaging_setup):
         response = _login(client, *messaging_setup["admin_creds"])
         assert response.status_code == 200
 
@@ -191,7 +191,7 @@ class TestCreateReport:
 
 
 class TestFollowingReport:
-    def test_create_report_follow_success(self, db_session, client, messaging_setup):
+    def test_e2e_follow_report_success(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
         citizen_id = messaging_setup["citizen_id"]
         
@@ -207,15 +207,17 @@ class TestFollowingReport:
         # so while the state of the db is correct, the content of the API response is wrong
         # assert response.json["followers_count"] == 1  # Fails but on the next request is correct
         # assert response.json["is_followed_by_current_user"] == True  # Fails but on the next request is correct
+        # The previous two assert fails but if I do another POST follow (even with the same
+        # logged in user and the same report) the value returned is correct
 
-    def test_create_report_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_follow_report_auth_required(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
         
         response = client.post(f"/api/v1/reports/{report_id}/follow")
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
 
-    def test_create_report_citizen_required(self, db_session, client, messaging_setup):
+    def test_e2e_follow_report_citizen_required(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
 
         response = _login(client, *messaging_setup["admin_creds"])
@@ -227,7 +229,7 @@ class TestFollowingReport:
 
 
 class TestUnfollowingReport:
-    def test_create_report_unfollow_success(self, db_session, client, messaging_setup):
+    def test_e2e_unfollow_report_success(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
         citizen_id = messaging_setup["citizen_id"]
         
@@ -246,7 +248,7 @@ class TestUnfollowingReport:
         assert len(db_session.get( Report, report_id ).followers) == 0
 
 
-    def test_create_report_unfollow_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_unfollow_report_auth_required(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
 
         response = client.delete(f"/api/v1/reports/{report_id}/follow")
@@ -254,7 +256,7 @@ class TestUnfollowingReport:
         assert response.json["error"] == "Authentication required."
 
 
-    def test_create_report_unfollow_citizen_required(self, db_session, client, messaging_setup):
+    def test_e2e_unfollow_report_citizen_required(self, db_session, client, messaging_setup):
         report_id = messaging_setup["report_assigned_id"]
         
         response = _login(client, *messaging_setup["admin_creds"])
@@ -266,7 +268,7 @@ class TestUnfollowingReport:
 
 
 class TestAssignReport:
-    def test_create_assign_report_success(self, db_session, client, messaging_setup):
+    def test_e2e_assign_report_success(self, db_session, client, messaging_setup):
         report_pa_id= messaging_setup["report_pa_id"]
         
         response = _login(client, *messaging_setup["admin_creds"])
@@ -276,14 +278,14 @@ class TestAssignReport:
         assert response.status_code == 200
         assert db_session.get( Report, report_pa_id).status == ReportStatus.ASSIGNED
 
-    def test_create_assign_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_assign_report_auth_required(self, db_session, client, messaging_setup):
         report_pa_id= messaging_setup["report_pa_id"]
         
         response = client.post(f"/api/v1/operator/reports/{report_pa_id}/assign")
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
 
-    def test_create_assign_role_required(self, db_session, client, messaging_setup):
+    def test_e2e_assign_report_role_required(self, db_session, client, messaging_setup):
         report_pa_id= messaging_setup["report_pa_id"]
         
         response = _login(client, *messaging_setup["citizen_creds"])
@@ -293,7 +295,7 @@ class TestAssignReport:
         assert response.status_code == 403
         assert response.json["error"] == "You do not have permission to perform this action."
 
-    def test_create_assign_report_not_found(self, db_session, client, messaging_setup):
+    def test_e2e_assign_report_not_found(self, db_session, client, messaging_setup):
         not_a_repo_id = -9999
         assert db_session.get( Report, not_a_repo_id ) == None
         
@@ -306,7 +308,7 @@ class TestAssignReport:
 
 
 class TestUpdateStatus:
-    def test_create_update_status_success(self, db_session, client, messaging_setup):
+    def test_e2e_update_status_success(self, db_session, client, messaging_setup):
         report_suspended_id= messaging_setup["report_suspended_id"]
         
         response = _login(client, *messaging_setup["admin_creds"])
@@ -320,7 +322,7 @@ class TestUpdateStatus:
         assert response.status_code == 200
         assert db_session.get( Report, report_suspended_id ).status == ReportStatus.RESOLVED
 
-    def test_create_update_status_validation_err(self, db_session, client, messaging_setup):
+    def test_e2e_update_status_validation_err(self, db_session, client, messaging_setup):
         report_suspended_id= messaging_setup["report_suspended_id"]
         
         response = _login(client, *messaging_setup["admin_creds"])
@@ -333,7 +335,7 @@ class TestUpdateStatus:
         response = client.post(f"/api/v1/operator/reports/{report_suspended_id}/status", json=payload)
         assert response.status_code == 400
 
-    def test_create_update_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_update_status_auth_required(self, db_session, client, messaging_setup):
         report_suspended_id= messaging_setup["report_suspended_id"]
         
         payload = {
@@ -344,7 +346,7 @@ class TestUpdateStatus:
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
 
-    def test_create_update_other_role_required(self, db_session, client, messaging_setup):
+    def test_e2e_update_status_other_role_required(self, db_session, client, messaging_setup):
         report_suspended_id= messaging_setup["report_suspended_id"]
         
         response = _login(client, *messaging_setup["citizen_creds"])
@@ -360,7 +362,7 @@ class TestUpdateStatus:
 
 
 class TestAssignedReports:
-    def test_assigned_report_success(self, db_session, client, messaging_setup):
+    def test_e2e_assigned_reports_success(self, db_session, client, messaging_setup):
         report_assigned_id = messaging_setup["report_assigned_id"]
         report_suspended_id= messaging_setup["report_suspended_id"]
         report_pa_id = messaging_setup["report_pa_id"]
@@ -376,12 +378,12 @@ class TestAssignedReports:
         assert report_suspended_id in ids
         assert report_pa_id not in ids
 
-    def test_assigned_report_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_assigned_reports_auth_required(self, db_session, client, messaging_setup):
         response = client.get("/api/v1/operator/reports/assigned")
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
     
-    def test_assigned_report_other_role_required(self, db_session, client, messaging_setup):
+    def test_e2e_assigned_reports_other_role_required(self, db_session, client, messaging_setup):
         response = _login(client, *messaging_setup["citizen_creds"])
         assert response.status_code == 200
 
@@ -391,7 +393,7 @@ class TestAssignedReports:
 
 
 class TestPendingReports:
-    def test_pending_report_success(self, db_session, client, messaging_setup):
+    def test_e2e_pending_reports_success(self, db_session, client, messaging_setup):
         report_assigned_id = messaging_setup["report_assigned_id"]
         report_suspended_id= messaging_setup["report_suspended_id"]
         report_pa_id = messaging_setup["report_pa_id"]
@@ -407,12 +409,12 @@ class TestPendingReports:
         assert report_suspended_id not in ids
         assert report_pa_id in ids
 
-    def test_pending_report_auth_required(self, db_session, client, messaging_setup):
+    def test_e2e_pending_reports_auth_required(self, db_session, client, messaging_setup):
         response = client.get("/api/v1/operator/reports/pending")
         assert response.status_code == 401
         assert response.json["error"] == "Authentication required."
     
-    def test_pending_report_other_role_required(self, db_session, client, messaging_setup):
+    def test_e2e_pending_reports_other_role_required(self, db_session, client, messaging_setup):
         response = _login(client, *messaging_setup["citizen_creds"])
         assert response.status_code == 200
 
