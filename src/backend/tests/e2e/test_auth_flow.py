@@ -3,6 +3,9 @@ from __future__ import annotations
 from urllib.parse import urlparse
 import pytest
 from flask.testing import FlaskClient
+from pathlib import Path
+from participium.app import create_app
+
 
 from participium import create_app
 from participium.core.security import hash_password
@@ -19,6 +22,8 @@ def client(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("AUTO_INIT_DB", "true")
     monkeypatch.setenv("BOOTSTRAP_REFERENCE_DATA", "false")
     monkeypatch.setenv("BOOTSTRAP_DEMO_DATA", "false")
+
+    
 
     application = create_app()
     application.config.update(TESTING=True)
@@ -232,13 +237,13 @@ class TestAuthFlows:
 
 class TestAdminUserManagement:
     def test_admin_can_access_admin_endpoint(self, client):
-        creds = _create_admin_user(
+        cred = _create_admin_user(
             username="admin.user",
             email="admin@example.com",
             password="Admin123!"
         )
 
-        _login(client, creds["email"], password="Admin123!")
+        _login(client, cred["email"], password="Admin123!")
 
         resp = client.get("/api/v1/admin/users")
 
@@ -246,12 +251,12 @@ class TestAdminUserManagement:
 
 
     def test_create_admin_user(self,client):
-        creds = _create_admin_user(
+        cred = _create_admin_user(
             username="admin.user",
             email="admin@example.com",
             password="Admin123!"
         )
-        _login(client, creds["email"], password="Admin123!")
+        _login(client, cred["email"], password="Admin123!")
         create_resp = client.post("/api/v1/admin/users", json={
             "username": "user.to.update",
             "first_name": "Before",
@@ -270,20 +275,37 @@ class TestAdminUserManagement:
 
 
 
-
     def test_admin_update_nonexistent_user(self,client):
-        creds = _create_admin_user(
+        cred = _create_admin_user(
             username="admin.user",
             email="admin@example.com",
             password="Admin123!"
         )
 
-        _login(client, creds["email"], password="Admin123!")
+        _login(client, cred["email"], password="Admin123!")
 
         resp = client.put("/api/v1/admin/users/999", json={"username": "nonexistent.user"})
         assert resp.status_code == 404
 
 
 
+class TestAppHooks:
 
+    def test_inactive_user_session_is_cleared(self, client):
+        _register_and_verify(client, username="inactive.user", email="inactive.user@example.com")
+        _login(client, "inactive.user")
+
+        _create_admin_user(username="admin.user", email="admin@example.com", password="Admin123!")
+        admin_client = client.application.test_client()
+        _login(admin_client, "admin@example.com", password="Admin123!")
+
+        users_resp = admin_client.get("/api/v1/admin/users")
+        users = users_resp.get_json()
+        user_id = next(u["id"] for u in users if u["username"] == "inactive.user")
+        admin_client.put(f"/api/v1/admin/users/{user_id}", json={"is_active": False})
+
+        # log back in as the now-inactive user's session (still has cookie)
+        _login(client, "inactive.user")  # this will fail
+        resp = client.get("/api/v1/users/me")
+        assert resp.status_code == 401
 

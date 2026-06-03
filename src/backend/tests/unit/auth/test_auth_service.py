@@ -4,6 +4,8 @@ from unittest.mock import Mock
 
 import pytest
 
+from participium.routes.api import _as_bool
+from participium.core.exceptions import DomainError
 from participium.core.exceptions import AuthenticationError, ValidationError
 from participium.core.security import verify_password
 from participium.models.enums import Role
@@ -260,4 +262,17 @@ class TestAuthenticate:
             service.authenticate(user.username, "Password1!")
 
 
+
+def test_domain_error_custom_status_code():
+    err = DomainError("something went wrong", status_code=422)
+    assert err.status_code == 422
+    assert str(err) == "something went wrong"
+
+
         
+def test_as_bool_parses_truthy_and_falsey_values():
+
+    assert _as_bool("true") is True
+    assert _as_bool("on") is True
+    assert _as_bool("false") is False
+    assert _as_bool(None, default=True) is True
