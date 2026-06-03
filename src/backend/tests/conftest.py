@@ -9,6 +9,8 @@ from participium.models.enums import Role
 from participium.models.user import User
 from participium.models.category import Category
 from participium.models.token import EmailVerificationToken
+from participium.models.report import Report, ReportPhoto, ReportStatusHistory, ReportFollower
+from participium.models.enums import Role, ReportStatus
 
 @pytest.fixture
 def db(monkeypatch: pytest.MonkeyPatch):
@@ -116,8 +118,6 @@ def token(
     tok.user = user(user_id=user_id, is_email_verified=False)
     return tok
 
-
-
 @pytest.fixture
 def user_payload():
     return {
@@ -129,5 +129,78 @@ def user_payload():
         "role": "citizen",
     }
 
+def create_report(
+    *,
+    id: int | None = None,
+    title: str = "valid_title",
+    description: str = "valid_description",
+    latitude: float = 42.12,
+    longitude: float = 9.34,
+    is_anonymous: bool = False,
+    status: ReportStatus = ReportStatus.PENDING_APPROVAL,
+    rejection_reason: str | None = None,
+    reporter_id: int | None = None,
+    category_id: int = 11,
+):
+    return Report(
+        id = id,
+        title=title.strip(),
+        description=description.strip(),
+        latitude=latitude,
+        longitude=longitude,
+        is_anonymous=bool(is_anonymous),
+        status=status,
+        rejection_reason = rejection_reason,
+        reporter_id=reporter_id,
+        category_id=category_id
+    )
 
+def create_report_photo(
+    *,
+    id: int | None = None,
+    report_id: int = 12,
+    file_path: str = "/home/user/pic/",
+    original_filename: str = "photo_1.png",
+    content_type: str | None = None,
+):
+    return ReportPhoto(
+        id = id,
+        report_id = report_id,
+        file_path = file_path,
+        original_filename = original_filename,
+        content_type = content_type
+    )
 
+def create_report_status_history(
+    *,
+    id: int | None = None,
+    report_id: int = 13,
+    previous_status: ReportStatus | None = ReportStatus.IN_PROGRESS,
+    new_status: ReportStatus = ReportStatus.RESOLVED,
+    note: str | None = "ciao",
+    changed_by_id: str | None = None,
+    created_at: str = datetime.now(),
+):
+    return ReportStatusHistory(
+        id = id,
+        report_id = report_id,
+        previous_status = previous_status,
+        new_status = new_status,
+        note = note,
+        changed_by_id = changed_by_id,
+        created_at = created_at,
+    )
+
+def create_report_follower(
+    *,
+    id: int | None = None,
+    report_id: int = 15,
+    user_id: int = 16,
+    created_at: str = datetime.now(),
+):
+    return ReportFollower(
+        id = id,
+        report_id = report_id,
+        user_id = user_id,
+        created_at = created_at,
+    )
